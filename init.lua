@@ -249,6 +249,7 @@ require('lazy').setup({
   -- Import files/folders starting in `./lua`
   { import = 'features.editor' },
   { import = 'features.lsp' },
+  { import = 'features.tab' },
   { import = 'features.colorscheme' },
   { import = 'features.telescope' },
   { import = 'features.which-key' },
