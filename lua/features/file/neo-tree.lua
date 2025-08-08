@@ -30,6 +30,8 @@ return {
     popup_border_style = 'rounded',
     window = {
       mappings = {
+        ['l'] = 'open',
+        ['h'] = 'close_node',
         ['s'] = require('flash').jump,
         ['<c-h>'] = 'open_leftabove_vs',
         ['<c-j>'] = 'open_split',
