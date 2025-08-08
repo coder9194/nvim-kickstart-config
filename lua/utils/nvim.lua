@@ -30,7 +30,7 @@ end
 ---@return string
 function M.get_current_workspace_name()
   local current_directory = vim.fn.getcwd()
-  local directory_folders = split_to_table(current_directory, '/')
+  local directory_folders = M.split_to_table(current_directory, '/')
   return directory_folders[#directory_folders]
 end
 
@@ -45,6 +45,18 @@ function M.get_files_in_directory(directory)
   local files = vim.fn.readdir(directory)
 
   return files
+end
+
+-- Split string to table by separator
+function M.split_to_table(input_string, separator)
+  if separator == nil then
+    separator = '%s'
+  end
+  local temporary_table = {}
+  for character in string.gmatch(input_string, '([^' .. separator .. ']+)') do
+    table.insert(temporary_table, character)
+  end
+  return temporary_table
 end
 
 return M

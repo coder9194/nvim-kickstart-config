@@ -80,4 +80,33 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Neovide
+-- vim.g.neovide_scale_factor = 0.8 -- Used when everything is too large
+
+-- Show/hide of concealed text
+vim.opt.conceallevel = 0
+
+-- Set terminal title to current directory
+vim.opt.title = true
+local current_workspace_name = require('utils.nvim').get_current_workspace_name()
+vim.opt.titlestring = current_workspace_name
+
+-- Show space as dot
+vim.cmd ':set listchars+=space:•'
+
+-- Word motion (characters in this option will be skipped by word motions `w`, `b`)
+vim.cmd 'set iskeyword=@,-,48-57,_,192-255'
+
+-- Enable word wrap
+vim.cmd 'set wrap'
+
+-- Show tab line on start
+vim.opt.showtabline = 2
+
+-- Fix long writing time of file to external drive
+vim.opt.writebackup = false
+
+-- Disable LSP logging
+vim.lsp.set_log_level 'off'
+
 return {} -- For file to be loaded without error
