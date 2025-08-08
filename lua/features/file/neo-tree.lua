@@ -30,7 +30,7 @@ return {
     popup_border_style = 'rounded',
     window = {
       mappings = {
-        -- ['s'] = require('flash').jump, TODO: enable this after installing flash.nvim
+        ['s'] = require('flash').jump,
         ['<c-h>'] = 'open_leftabove_vs',
         ['<c-j>'] = 'open_split',
         ['<c-k>'] = require('utils.neo-tree').open_file_in_above,
