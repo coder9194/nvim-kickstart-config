@@ -79,6 +79,7 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- Import files/folders starting in `./lua`
+  { import = 'features.buffer' },
   { import = 'features.editor' },
   { import = 'features.file' },
   { import = 'features.git' },
