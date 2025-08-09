@@ -106,7 +106,4 @@ vim.opt.showtabline = 2
 -- Fix long writing time of file to external drive
 vim.opt.writebackup = false
 
--- Disable LSP logging
-vim.lsp.set_log_level 'off'
-
 return {} -- For file to be loaded without error
