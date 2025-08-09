@@ -6,6 +6,12 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+  init = function()
+    vim.opt.foldmethod = 'expr'
+    vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+    vim.opt.foldlevel = 99
+    vim.opt.foldenable = true
+  end,
   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
   opts = {
     ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
