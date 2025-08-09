@@ -85,6 +85,7 @@ require('lazy').setup({
   { import = 'features.git' },
   { import = 'features.lsp' },
   { import = 'features.tab' },
+  { import = 'features.window' },
   { import = 'features.colorscheme' },
   { import = 'features.telescope' },
   { import = 'features.which-key' },
