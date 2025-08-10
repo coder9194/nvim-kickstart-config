@@ -84,6 +84,7 @@ require('lazy').setup({
   { import = 'features.file' },
   { import = 'features.git' },
   { import = 'features.lsp' },
+  { import = 'features.session' },
   { import = 'features.tab' },
   { import = 'features.window' },
   { import = 'features.colorscheme' },
