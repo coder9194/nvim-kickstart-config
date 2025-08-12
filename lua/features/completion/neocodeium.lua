@@ -61,16 +61,16 @@ return {
       vim.b.completion = false
       require('neocodeium').setup {}
     end,
-    keys = {
-      {
-        '<leader>cC',
-        mode = 'n',
-        function()
-          require('neocodeium').chat()
-        end,
-        desc = 'Chat with NeoCodeium',
-      },
-    },
+    -- keys = {
+    --   {
+    --     '<leader>cC',
+    --     mode = 'n',
+    --     function()
+    --       require('neocodeium').chat()
+    --     end,
+    --     desc = 'Chat with NeoCodeium',
+    --   },
+    -- },
   },
   {
     'saghen/blink.cmp',
