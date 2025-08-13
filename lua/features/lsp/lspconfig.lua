@@ -8,7 +8,8 @@ return {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     -- Mason must be loaded before its dependents so we need to set it up here.
     -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-    { 'mason-org/mason.nvim', opts = {} },
+    -- { 'mason-org/mason.nvim', opts = {} },
+    { 'mason-org/mason.nvim' },
     'mason-org/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -18,6 +19,7 @@ return {
     -- Allows extra capabilities provided by blink.cmp
     'saghen/blink.cmp',
   },
+  event = 'VimEnter',
   config = function()
     -- Brief aside: **What is LSP?**
     --
@@ -261,4 +263,8 @@ return {
     -- NOTE: Some servers may require an old setup until they are updated. For the full list refer here: https://github.com/neovim/nvim-lspconfig/issues/3705
     -- These servers will have to be manually set up with require("lspconfig").server_name.setup{}
   end,
+  keys = {
+    { '<leader>li', mode = 'n', '<cmd>LspInfo<cr>', desc = 'Check LSP Info' },
+    { '<leader>lr', mode = 'n', '<cmd>LspRestart<cr>', desc = 'Restart LSP' },
+  },
 }

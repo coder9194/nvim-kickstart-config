@@ -52,6 +52,6 @@ return {
     },
   },
   keys = {
-    { '<leader>l', '<cmd>Lazy<cr>', desc = 'Lazy Plugin Manager' },
+    { '<leader>p', '<cmd>Lazy<cr>', desc = 'Lazy Plugin Manager' },
   },
 }
