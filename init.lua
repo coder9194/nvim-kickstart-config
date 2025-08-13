@@ -90,6 +90,7 @@ require('lazy').setup({
   { import = 'features.session' },
   { import = 'features.tab' },
   { import = 'features.window' },
+  { import = 'features.yank' },
   { import = 'features.colorscheme' },
   { import = 'features.telescope' },
   { import = 'features.which-key' },
