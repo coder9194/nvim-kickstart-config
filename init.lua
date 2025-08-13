@@ -79,6 +79,7 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- Import files/folders starting in `./lua`
+  { import = 'features.automation' },
   { import = 'features.buffer' },
   { import = 'features.completion' },
   { import = 'features.code' },
@@ -114,6 +115,8 @@ require('lazy').setup({
     },
   },
 })
+
+require('overseer').setup()
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
