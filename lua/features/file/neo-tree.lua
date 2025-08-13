@@ -29,10 +29,11 @@ return {
     },
     popup_border_style = 'rounded',
     window = {
+      -- stylua: ignore
       mappings = {
         ['l'] = 'open',
         ['h'] = 'close_node',
-        ['s'] = require('flash').jump,
+        ['s'] = function() require('flash').jump() end,
         ['<c-h>'] = 'open_leftabove_vs',
         ['<c-j>'] = 'open_split',
         ['<c-k>'] = require('utils.neo-tree').open_file_in_above,
