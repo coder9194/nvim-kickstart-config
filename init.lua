@@ -88,6 +88,7 @@ require('lazy').setup({
   { import = 'features.git' },
   { import = 'features.lsp' },
   { import = 'features.navigation' },
+  { import = 'features.notification' },
   { import = 'features.session' },
   { import = 'features.syntax' },
   { import = 'features.tab' },
@@ -100,6 +101,9 @@ require('lazy').setup({
   { import = 'features.which-key' },
   { import = 'options' },
 }, {
+  change_detection = {
+    notify = false, -- disables "Config change detected" message
+  },
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
