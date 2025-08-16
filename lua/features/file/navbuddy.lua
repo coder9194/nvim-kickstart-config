@@ -34,7 +34,7 @@ return {
       },
     },
     keys = {
-      { '<leader>fn', mode = 'n', '<cmd>Navbuddy<cr>', desc = 'Symbol Navigation' },
+      { '<leader>fs', mode = 'n', '<cmd>Navbuddy<cr>', desc = 'Symbol Navigation' },
     },
   },
 }

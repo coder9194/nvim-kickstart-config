@@ -5,6 +5,6 @@ return {
   'mogelbrod/vim-jsonpath',
   -- stylua: ignore
   keys = {
-    { "<leader>fs", mode = "n", function() local json_path = vim.fn.input("Search JSON path: ") vim.cmd("JsonPath " .. json_path) end, desc = "Search JSON", },
+    { "<leader>fS", mode = "n", function() local json_path = vim.fn.input("Search JSON path: ") vim.cmd("JsonPath " .. json_path) end, desc = "Search JSON", },
   },
 }
