@@ -87,7 +87,6 @@ require('lazy').setup({
   { import = 'features.format' },
   { import = 'features.git' },
   { import = 'features.lsp' },
-  { import = 'features.navigation' },
   { import = 'features.notification' },
   { import = 'features.session' },
   { import = 'features.syntax' },

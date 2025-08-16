@@ -19,7 +19,6 @@ File – Browse, search, and manage files and directories.
 Format – Automatically format, align, and style code for consistent readability.
 Git – Work with Git repositories without leaving Neovim.
 LSP – Add code intelligence with Language Server Protocol features.
-Navigation – Move around code and projects quickly and efficiently.
 Session – Save and restore your full editing state.
 Syntax – Highlight and parse code for better readability and structure.
 Tab – Manage Neovim’s tabpages and multi-layout workflows.
