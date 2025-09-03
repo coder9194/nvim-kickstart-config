@@ -79,6 +79,7 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- Import files/folders starting in `./lua`
+  { import = 'features.animation' },
   { import = 'features.automation' },
   { import = 'features.buffer' },
   { import = 'features.completion' },
