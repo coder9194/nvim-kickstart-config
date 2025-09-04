@@ -228,6 +228,34 @@ return {
           },
         },
       },
+      -- NOTE: https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
+      vtsls = {
+        settings = {
+          typescript = {
+            inlayHints = {
+              parameterNames = {
+                enabled = 'all',
+              },
+            },
+          },
+          javascript = {
+            inlayHints = {
+              parameterNames = {
+                enabled = 'all',
+              },
+            },
+          },
+        },
+      },
+      jdtls = {
+        settings = {
+          java = {
+            autobuild = {
+              enabled = false,
+            },
+          },
+        },
+      },
     }
     ---@type MasonLspconfigSettings
     ---@diagnostic disable-next-line: missing-fields

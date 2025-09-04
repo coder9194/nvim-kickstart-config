@@ -15,6 +15,7 @@ return {
       'vue-language-server',
       'prettier', -- Formatter
       'eslint-lsp',
+      'vtsls',
       -- Lua
       'lua-language-server',
       'stylua', -- Formatter
