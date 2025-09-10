@@ -6,15 +6,14 @@ return {
     },
     scroll = {
       enable = true,
+      time = 300,
     },
     resize = {
       enable = true,
+      time = 300,
     },
-    open = {
-      enable = true,
-    },
-    close = {
-      enable = true,
-    },
+    -- Disable fade effect on window open and close as it looks weird on transparent background
+    open = { enable = false },
+    close = { enable = false },
   },
 }
