@@ -40,5 +40,6 @@ return {
     { '<leader>ar', '<cmd>OverseerRunCmd<cr>', desc = 'Run raw command' },
     { '<leader>as', '<cmd>OverseerRun<cr>', desc = 'Select and start task' },
     { '<leader>at', '<cmd>OverseerToggle<cr>', desc = 'Show running tasks' },
+    { '<leader>aq', '<cmd>:OverseerQuickAction<cr>', desc = 'Show quick actions of last task' },
   },
 }
