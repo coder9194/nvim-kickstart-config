@@ -31,4 +31,7 @@ return {
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
     },
   },
+  keys = {
+    { '<leader>Ff', vim.lsp.buf.format, desc = 'Format buffer' },
+  },
 }
