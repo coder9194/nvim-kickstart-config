@@ -92,6 +92,7 @@ require('lazy').setup({
   { import = 'features.session' },
   { import = 'features.syntax' },
   { import = 'features.tab' },
+  { import = 'features.terminal' },
   { import = 'features.textobject' },
   { import = 'features.ui' },
   { import = 'features.window' },
