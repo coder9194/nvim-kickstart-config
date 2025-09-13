@@ -16,6 +16,7 @@ return {
   -- stylua: ignore
   keys = {
     { '<leader>wD', '<cmd>windo diffthis<cr>', desc = 'Diff opened windows' },
+    { '<leader>w<space>', '<c-w>p', desc = 'Last Window' },
     { '<leader>wdd', '<c-w>c', desc = 'Delete current window' },
     { '<leader>wdo', '<c-w>o', desc = 'Delete other windows' },
     { '<leader>wmh', function() require('utils.window').swap_windows 'left' end, desc = 'Move current window to left', },

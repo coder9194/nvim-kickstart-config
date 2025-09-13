@@ -14,8 +14,8 @@ return {
   },
   -- stylua: ignore
   keys = {
-    { '<leader>tt', 'g<tab>', desc = 'Last active tab' },
     { '<leader>tw', '<cmd>windo update<cr>', desc = 'Write all changes in current tab' },
+    { '<leader>t<space>', 'g<tab>', desc = 'Last active tab' },
     { '<leader>tdd', '<cmd>tabclose<cr>', desc = 'Close current tab' },
     { '<leader>tdl', '<cmd>.+1,$tabdo :tabclose<cr>', desc = 'Close tabs to the right' },
     { '<leader>tdo', '<cmd>tabonly<cr>', desc = 'Close other tabs' },
