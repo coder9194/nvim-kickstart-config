@@ -2,7 +2,9 @@ return {
   'folke/snacks.nvim',
   -- stylua: ignore
   keys = {
-    { '<leader>bg', function() Snacks.picker.grep_buffers() end, desc = 'Grep Opened Buffers', },
-    { '<leader>bs', function() Snacks.picker.buffers() end, desc = 'Buffers', },
+    { '<leader>bb', "<cmd>e #<cr>", desc = 'Last active buffer', },
+    { '<leader>bd', function() require('snacks').bufdelete() end, desc = 'Delete Current Buffer', },
+    { '<leader>bg', function() require('snacks').picker.grep_buffers() end, desc = 'Grep Opened Buffers', },
+    { '<leader>bs', function() require('snacks').picker.buffers() end, desc = 'Buffers', },
   },
 }
