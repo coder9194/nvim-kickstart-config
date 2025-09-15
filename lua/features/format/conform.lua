@@ -2,6 +2,13 @@
 -- Autoformat
 -- https://github.com/stevearc/conform.nvim
 
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function(args)
+    require('conform').format { bufnr = args.buf }
+  end,
+})
+
 return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
@@ -28,10 +35,16 @@ return {
       -- python = { "isort", "black" },
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
-      -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      javascript = { 'prettierd', 'prettier', stop_after_first = true },
+      javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+      typescript = { 'prettierd', 'prettier', stop_after_first = true },
+      typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+      json = { 'prettierd', 'prettier', stop_after_first = true },
+      jsonc = { 'prettierd', 'prettier', stop_after_first = true },
     },
   },
+  -- stylua: ignore
   keys = {
-    { '<leader>Ff', vim.lsp.buf.format, desc = 'Format buffer' },
+    { '<leader>Ff', function() require('conform').format { async = true } end, desc = 'Format buffer', },
   },
 }
