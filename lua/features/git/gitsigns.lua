@@ -33,7 +33,6 @@ return {
     { '<leader>ghS', mode = 'n', function() require('gitsigns.actions').stage_buffer() end, desc = 'Stage file hunks' },
     { '<leader>ghr', mode = 'n', function() require('gitsigns.actions').reset_hunk() end, desc = 'Reset hunk' },
     { '<leader>ghR', mode = 'n', function() require('gitsigns.actions').reset_buffer() end, desc = 'Reset file hunks' },
-    { '<leader>ghu', mode = 'n', function() require('gitsigns.actions').undo_stage_hunk() end, desc = 'Undo last staged hunk' },
     { '<leader>ghs', mode = 'v', function() require('gitsigns.actions').stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end, desc = 'Stage hunk(s)', },
     { '<leader>ghr', mode = 'v', function() require('gitsigns.actions').reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end, desc = 'Reset hunk(s)', },
   },
