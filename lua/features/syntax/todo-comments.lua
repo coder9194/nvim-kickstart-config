@@ -7,4 +7,9 @@ return {
   event = 'VeryLazy',
   dependencies = { 'nvim-lua/plenary.nvim' },
   opts = { signs = false },
+  -- stylua: ignore
+  keys = {
+    ---@diagnostic disable-next-line: undefined-field
+    { '<leader>st', function() require('snacks').picker.todo_comments { keywords = { 'TODO', 'FIX', 'FIXME' } } end, desc = 'Todo/Fix/Fixme', },
+  },
 }
