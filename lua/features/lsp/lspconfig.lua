@@ -149,7 +149,40 @@ return {
           },
         },
       },
-      eslint = {},
+      eslint = {
+        on_attach = function(client, bufnr)
+          -- Disable eslint formatting if using other formatter like prettier
+          client.server_capabilities.documentFormattingProvider = false
+
+          vim.api.nvim_create_autocmd('BufWritePre', {
+            desc = 'Eslint fix all on save',
+            buffer = bufnr,
+            callback = function()
+              local clients = vim.lsp.get_clients { bufnr = 0 }
+              if #clients == 0 then
+                return
+              end
+
+              local position_encoding = clients[1].offset_encoding or 'utf-16'
+              local params = vim.lsp.util.make_range_params(nil, position_encoding)
+              ---@diagnostic disable-next-line: inject-field
+              params.context = { only = { 'source.fixAll' } }
+
+              local results = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, 1000)
+              for _, res in pairs(results or {}) do
+                for _, action in pairs(res.result or {}) do
+                  if action.edit then
+                    vim.lsp.util.apply_workspace_edit(action.edit, position_encoding)
+                  end
+                  if action.command then
+                    clients[1]:exec_cmd(action.command)
+                  end
+                end
+              end
+            end,
+          })
+        end,
+      },
     }
     ---@type MasonLspconfigSettings
     ---@diagnostic disable-next-line: missing-fields
