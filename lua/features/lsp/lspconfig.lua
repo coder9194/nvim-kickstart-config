@@ -149,6 +149,7 @@ return {
           },
         },
       },
+      eslint = {},
     }
     ---@type MasonLspconfigSettings
     ---@diagnostic disable-next-line: missing-fields
