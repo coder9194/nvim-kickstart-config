@@ -24,6 +24,10 @@ return {
   },
   -- stylua: ignore
   keys = {
+---@diagnostic disable-next-line: param-type-mismatch
+    { 'Hh', function() require('gitsigns').nav_hunk 'prev' end, desc = 'Preview hunk', },
+---@diagnostic disable-next-line: param-type-mismatch
+    { 'Lh', function() require('gitsigns').nav_hunk 'next' end, desc = 'Next hunk', },
     { '<leader>gbl', mode = 'n', function() require('gitsigns.actions').blame_line() end, desc = 'Blame Line' },
     { '<leader>ghs', mode = 'n', function() require('gitsigns.actions').stage_hunk() end, desc = 'Stage/Unstage hunk' },
     { '<leader>ghS', mode = 'n', function() require('gitsigns.actions').stage_buffer() end, desc = 'Stage file hunks' },
