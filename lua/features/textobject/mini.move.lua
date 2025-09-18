@@ -7,16 +7,16 @@ return {
     -- Module mappings. Use `''` (empty string) to disable one.
     mappings = {
       -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
-      left = '<M-h>',
-      right = '<M-l>',
-      down = '<M-j>',
-      up = '<M-k>',
+      left = '<M-H>',
+      right = '<M-L>',
+      down = '<M-J>',
+      up = '<M-K>',
 
       -- Move current line in Normal mode
-      line_left = '<M-h>',
-      line_right = '<M-l>',
-      line_down = '<M-j>',
-      line_up = '<M-k>',
+      line_left = '<M-H>',
+      line_right = '<M-L>',
+      line_down = '<M-J>',
+      line_up = '<M-K>',
     },
 
     -- Options which control moving behavior

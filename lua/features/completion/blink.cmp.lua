@@ -61,6 +61,7 @@ return {
       --
       -- See :h blink-cmp-config-keymap for defining your own keymap
       preset = 'default',
+      ['<right>'] = { 'accept', 'fallback' },
 
       -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
       --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -98,5 +99,10 @@ return {
 
     -- Shows a signature help window while you type arguments for a function
     signature = { enabled = true },
+  },
+  -- stylua: ignore
+  keys = {
+    { '<c-c>', mode = 'n', function() require('utils.nvim').send_keys 'e' require('utils.nvim').send_keys 'a' require('blink.cmp').show() end, desc = 'Suggest Imports', },
+    { '<c-c>', mode = 'i', function() require('blink.cmp').show() end, desc = 'Suggest Imports', },
   },
 }

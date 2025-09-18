@@ -1,6 +1,9 @@
 -- NeoCodeium provides AI completion powered by Codeium and address the issue of flickering suggestions in the official plugin
 -- https://github.com/monkoose/neocodeium
 
+-- TODO: Disable for a while, renable/remove this after trial of Copilot
+return {}
+
 vim.b.completion = false
 
 vim.api.nvim_create_autocmd('User', {
