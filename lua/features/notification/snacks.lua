@@ -50,13 +50,9 @@ return {
       top_down = false, -- Show notify messages on bottom right
     },
   },
+  -- stylua: ignore
   keys = {
-    {
-      '<leader>n',
-      function()
-        require('snacks.notifier').show_history()
-      end,
-      desc = 'Notifications',
-    },
+    { '<leader>nd', function() require('snacks.notifier').hide() end, desc = 'Dismiss Notification', },
+    { '<leader>nh', function() require('snacks.notifier').show_history() end, desc = 'Notifications', },
   },
 }
