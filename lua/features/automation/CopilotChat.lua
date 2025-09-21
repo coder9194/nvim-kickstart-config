@@ -2,6 +2,7 @@
 -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
 return {
   'CopilotC-Nvim/CopilotChat.nvim',
+  enabled = false,
   dependencies = {
     { 'nvim-lua/plenary.nvim', branch = 'master' },
   },
