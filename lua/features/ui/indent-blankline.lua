@@ -98,6 +98,8 @@ return {
             tsx = javascript_nodes,
           },
         },
+        show_start = false,
+        show_end = false,
       },
     }
 
