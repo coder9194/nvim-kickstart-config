@@ -12,7 +12,6 @@ return {
     -- add any opts here
     -- this file can contain specific instructions for your project
     instructions_file = 'avante.md',
-    -- for example
     provider = 'copilot',
     providers = {
       claude = {
@@ -31,6 +30,15 @@ return {
         extra_request_body = {
           temperature = 0.75,
           max_tokens = 32768,
+        },
+      },
+      copilot = {
+        -- No endpoint needed
+        model = 'claude-sonnet-4',
+        timeout = 30000, -- Timeout in milliseconds
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 20480,
         },
       },
     },
