@@ -4,6 +4,12 @@
 -- vim.cmd 'hi def IlluminatedWordRead gui=underline cterm=underline'
 -- vim.cmd 'hi def IlluminatedWordWrite gui=underline cterm=underline'
 
+vim.api.nvim_create_autocmd('BufEnter', {
+  callback = function()
+    require('illuminate').resume()
+  end,
+})
+
 return {
   'RRethy/vim-illuminate',
   config = function()
