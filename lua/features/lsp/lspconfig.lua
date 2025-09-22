@@ -183,6 +183,7 @@ return {
           })
         end,
       },
+      jsonls = {},
     }
     ---@type MasonLspconfigSettings
     ---@diagnostic disable-next-line: missing-fields
