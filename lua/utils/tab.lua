@@ -16,4 +16,9 @@ function M.run_in_new_tab(params)
   end
 end
 
+function M.is_tab_named(tab_name)
+  local current_tab_name = require('utils.bufferline').get_current_tab_name()
+  return current_tab_name and current_tab_name:match(tab_name)
+end
+
 return M

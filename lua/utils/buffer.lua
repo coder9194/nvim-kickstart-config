@@ -78,4 +78,11 @@ function M.delete_invisible_buffers()
   end
 end
 
+-- Open buffer in new tab
+function M.open_buffer_in_new_tab()
+  local position_in_line, line_number = require('utils.nvim').get_cursor_position()
+  vim.cmd 'tabe %'
+  require('utils.nvim').set_cursor_position(position_in_line, line_number)
+end
+
 return M

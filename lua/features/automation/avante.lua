@@ -1,5 +1,5 @@
--- https://github.com/yetone/avante.nvim
 return {
+  -- https://github.com/yetone/avante.nvim
   'yetone/avante.nvim',
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   -- ⚠️ must add this setting! ! !
@@ -78,5 +78,9 @@ return {
       },
       ft = { 'markdown', 'Avante' },
     },
+  },
+  -- stylua: ignore
+  keys = {
+    { '<leader>aa', function() local tab_name = 'Avante Ask' require('utils.buffer').open_buffer_in_new_tab() vim.cmd 'AvanteAsk' require('bufferline').rename_tab { tab_name } vim.defer_fn(function() require('utils.avante').set_tab_keymaps(tab_name) end, 100) end, desc = 'Ask Avante', },
   },
 }
