@@ -104,3 +104,5 @@ vim.api.nvim_create_autocmd('VimEnter', {
     vim.opt.writebackup = false
   end,
 })
+
+return {}
