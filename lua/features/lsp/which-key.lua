@@ -11,11 +11,6 @@ return {
   },
   opts = {
     spec = {
-      { 'gd', group = 'Go to Definition' },
-      { 'gi', group = 'Go to Implementation' },
-      { 'gr', group = 'Go to Reference' },
-      { 'gy', group = 'Go to Type Definition' },
-      { 'gD', group = 'Go to Declaration' },
       { '<leader>l', group = 'LSP' },
     },
   },

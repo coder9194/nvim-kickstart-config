@@ -22,9 +22,9 @@ return {
         input = {
           keys = {
             ['<c-h>'] = { 'open_in_left', mode = { 'i', 'n' } },
-            ['<c-j>'] = { 'open_in_below', mode = { 'i', 'n' } },
+            ['<c-j>'] = { 'edit_split', mode = { 'i', 'n' } },
             ['<c-k>'] = { 'open_in_above', mode = { 'i', 'n' } },
-            ['<c-l>'] = { 'open_in_right', mode = { 'i', 'n' } },
+            ['<c-l>'] = { 'edit_vsplit', mode = { 'i', 'n' } },
           },
         },
       },
@@ -35,45 +35,13 @@ return {
         cwd = true, -- Search only on current workspace
       },
       actions = {
-        open_in_left = function(picker, item)
-          local file_path = item._path
-
-          Snacks.picker.actions.close(picker)
-          require('utils.window').run_in_left_window {
-            callback = function()
-              vim.api.nvim_command('edit ' .. file_path)
-            end,
-          }
-        end,
-        open_in_below = function(picker, item)
-          local file_path = item._path
-
-          Snacks.picker.actions.close(picker)
-          require('utils.window').run_in_below_window {
-            callback = function()
-              vim.api.nvim_command('edit ' .. file_path)
-            end,
-          }
+        open_in_left = function(picker, selected_file, actions)
+          picker:action 'edit_vsplit'
+          require('utils.window').swap_windows 'left'
         end,
         open_in_above = function(picker, item)
-          local file_path = item._path
-
-          Snacks.picker.actions.close(picker)
-          require('utils.window').run_in_above_window {
-            callback = function()
-              vim.api.nvim_command('edit ' .. file_path)
-            end,
-          }
-        end,
-        open_in_right = function(picker, item)
-          local file_path = item._path
-
-          Snacks.picker.actions.close(picker)
-          require('utils.window').run_in_right_window {
-            callback = function()
-              vim.api.nvim_command('edit ' .. file_path)
-            end,
-          }
+          picker:action 'edit_split'
+          require('utils.window').swap_windows 'up'
         end,
       },
     },
