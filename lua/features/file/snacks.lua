@@ -3,6 +3,10 @@ return {
   ---@type snacks.Config
   opts = {
     picker = {
+      -- Start picker in normal mode
+      on_show = function()
+        vim.cmd.stopinsert()
+      end,
       sources = {
         files = {
           ignored = true, -- Ignore files in .gitignore
