@@ -1,8 +1,10 @@
-vim.keymap.del({ 'n', 'v' }, 'gra')
-vim.keymap.del('n', 'gri')
-vim.keymap.del('n', 'grn')
-vim.keymap.del('n', 'grr')
-vim.keymap.del('n', 'grt')
+local safely_delete = require('utils.nvim').safely_delete_keymap
+
+safely_delete({ 'n', 'v' }, 'gra')
+safely_delete('n', 'gri')
+safely_delete('n', 'grn')
+safely_delete('n', 'grr')
+safely_delete('n', 'grt')
 
 return {
   'folke/which-key.nvim',

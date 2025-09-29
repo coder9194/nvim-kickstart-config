@@ -59,4 +59,14 @@ function M.split_to_table(input_string, separator)
   return temporary_table
 end
 
+function M.safely_delete_keymap(mode, lhs)
+  if type(mode) == 'table' then
+    for _, m in ipairs(mode) do
+      pcall(vim.keymap.del, m, lhs)
+    end
+  else
+    pcall(vim.keymap.del, mode, lhs)
+  end
+end
+
 return M
