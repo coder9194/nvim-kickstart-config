@@ -18,7 +18,7 @@ return {
   },
     -- stylua: ignore
     keys = {
-      { '<leader>c', mode = 'v', '<cmd>CopilotChat #slection<cr>', desc = 'Attach to Copilot' },
-    }
-,
+      { '<leader>ac',  function () require('CopilotChat').open { window = { layout = 'float', } } end, desc = 'Copilot chat' },
+      { '<leader>ac', mode = 'v', '<cmd>CopilotChat #selection<cr>', desc = 'Attach to Copilot' },
+    },
 }

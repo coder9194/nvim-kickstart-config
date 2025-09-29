@@ -45,6 +45,12 @@ return {
     behaviour = {
       auto_set_keymaps = false,
     },
+    mappings = {
+      files = {
+        add_current = false,
+        add_all_buffers = false,
+      },
+    },
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -82,5 +88,6 @@ return {
   -- stylua: ignore
   keys = {
     { '<leader>aa', function() local tab_name = 'Avante Ask' require('utils.buffer').open_buffer_in_new_tab() vim.cmd 'AvanteAsk' require('bufferline').rename_tab { tab_name } vim.defer_fn(function() require('utils.avante').set_tab_keymaps(tab_name) end, 100) end, desc = 'Ask Avante', },
+    { '<leader>aS', '<cmd>AvanteStop<cr>', desc = 'Stop Avante' },
   },
 }
