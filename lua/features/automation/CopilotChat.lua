@@ -2,12 +2,13 @@
 -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
 return {
   'CopilotC-Nvim/CopilotChat.nvim',
-  enabled = false,
   dependencies = {
     { 'nvim-lua/plenary.nvim', branch = 'master' },
   },
   build = 'make tiktoken',
   opts = {
+    model = 'o4-mini',
+    temperature = 0.1, -- Lower = focused, higher = creative
     window = {
       layout = 'float',
     },
