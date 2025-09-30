@@ -7,6 +7,8 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter' }, {
 
     if is_avante_tab then
       require('utils.avante').set_tab_keymaps 'Avante Ask'
+    else
+      require('utils.avante').clear_tab_keymaps()
     end
   end,
 })
