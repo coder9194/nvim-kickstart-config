@@ -88,7 +88,7 @@ return {
   },
   -- stylua: ignore
   keys = {
-    { '<leader>aa', function() local tab_name = 'Avante Ask' require('utils.buffer').open_buffer_in_new_tab() vim.cmd 'AvanteAsk' require('bufferline').rename_tab { tab_name } vim.defer_fn(function() require('utils.avante').set_tab_keymaps(tab_name) end, 100) end, desc = 'Ask Avante', },
+    { '<leader>aa', function() local tab_name = 'Avante Ask' require('utils.buffer').open_buffer_in_new_tab() vim.cmd 'AvanteChatNew' require('bufferline').rename_tab { tab_name } vim.defer_fn(function() require('utils.avante').set_tab_keymaps(tab_name) end, 100) end, desc = 'Ask Avante', },
     { '<leader>aS', '<cmd>AvanteStop<cr>', desc = 'Stop Avante' },
   },
 }
