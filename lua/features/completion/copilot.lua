@@ -2,6 +2,7 @@
 -- https://github.com/zbirenbaum/copilot.lua
 return {
   'zbirenbaum/copilot.lua',
+  enabled = false,
   cmd = 'Copilot',
   event = { 'InsertEnter' },
   config = function()
