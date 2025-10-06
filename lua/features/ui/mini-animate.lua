@@ -5,7 +5,7 @@ return {
       enable = false,
     },
     scroll = {
-      enable = true,
+      enable = false,
       time = 300,
     },
     resize = {
