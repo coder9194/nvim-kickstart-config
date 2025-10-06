@@ -14,7 +14,7 @@ return {
         enabled = 'shift', -- false to disable, or choose a option below (e.g. "shift") and set option for it if needed
         shift = {
           delta_time = 0.1,
-          smooth_speed = 1,
+          smooth_speed = 2,
           delay = 3,
         },
         progressive = {
