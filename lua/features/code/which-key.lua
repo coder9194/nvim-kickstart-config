@@ -5,7 +5,7 @@ return {
   },
   opts = {
     spec = {
-      { '<leader>c', group = 'Code' },
+      { '<leader>c', group = 'Code', mode = { 'n', 'v' } },
       { '<leader>cd', group = 'diagnostic' },
       { '<leader>cl', group = 'log' },
       { '<leader>ct', group = 'type' },
