@@ -29,6 +29,7 @@ return {
             ['<c-j>'] = { 'edit_split', mode = { 'i', 'n' } },
             ['<c-k>'] = { 'open_in_above', mode = { 'i', 'n' } },
             ['<c-l>'] = { 'edit_vsplit', mode = { 'i', 'n' } },
+            ['<CR>'] = { 'confirm_without_reuse', mode = { 'n', 'i' } },
           },
         },
       },
@@ -46,6 +47,32 @@ return {
         open_in_above = function(picker, item)
           picker:action 'edit_split'
           require('utils.window').swap_windows 'up'
+        end,
+        confirm_without_reuse = function(picker, item)
+          local target_wins = function()
+            local targets = {}
+            for _, win in ipairs(vim.api.nvim_list_wins()) do
+              local buf = vim.api.nvim_win_get_buf(win)
+              local cfg = vim.api.nvim_win_get_config(win)
+              if (vim.bo[buf].buflisted and cfg.relative == '') or vim.bo[buf].ft == 'snacks_dashboard' then
+                local file = vim.api.nvim_buf_get_name(buf)
+                table.insert(targets, { win = win, buf = buf, file = file })
+              end
+            end
+            return targets
+          end
+
+          local targets = target_wins()
+
+          for _, targ in ipairs(targets) do
+            if targ.file == item.file or vim.bo[targ.buf].ft == 'snacks_dashboard' then
+              picker.opts.jump.reuse_win = false --[[Override]]
+              picker:action 'jump'
+              return
+            end
+          end
+
+          picker:action 'confirm'
         end,
       },
     },
