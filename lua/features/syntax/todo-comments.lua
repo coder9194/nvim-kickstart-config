@@ -6,10 +6,20 @@ return {
   'folke/todo-comments.nvim',
   event = 'VeryLazy',
   dependencies = { 'nvim-lua/plenary.nvim' },
-  opts = { signs = false },
+  opts = {
+    signs = false,
+    keywords = {
+      DEV = { icon = ' ', color = 'info' },
+    },
+    merge_keywords = true,
+  },
   -- stylua: ignore
   keys = {
     ---@diagnostic disable-next-line: undefined-field
-    { '<leader>st', function() require('snacks').picker.todo_comments { keywords = { 'TODO', 'FIX', 'FIXME' } } end, desc = 'Todo/Fix/Fixme', },
+    { '<leader>sd', function() require('snacks').picker.todo_comments { keywords = { 'DEV' } } end, desc = 'Dev', },
+    ---@diagnostic disable-next-line: undefined-field
+    { '<leader>st', function() require('snacks').picker.todo_comments { keywords = { 'TODO' } } end, desc = 'Todo', },
+    ---@diagnostic disable-next-line: undefined-field
+    { '<leader>sf', function() require('snacks').picker.todo_comments { keywords = { 'FIX' } } end, desc = 'Fixme', },
   },
 }
