@@ -35,7 +35,7 @@ return {
       },
       copilot = {
         -- No endpoint needed
-        model = 'gpt-5-mini',
+        model = 'claude-haiku-4.5',
         timeout = 30000, -- Timeout in milliseconds
         extra_request_body = {
           temperature = 0.75,
