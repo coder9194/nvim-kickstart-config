@@ -130,6 +130,7 @@ return {
                 enabled = 'all',
               },
             },
+            updateImportsOnFileMove = { enabled = 'always' },
           },
           javascript = {
             inlayHints = {
@@ -137,6 +138,7 @@ return {
                 enabled = 'all',
               },
             },
+            updateImportsOnFileMove = { enabled = 'always' },
           },
         },
       },
