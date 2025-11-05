@@ -7,7 +7,7 @@ return {
   },
   build = 'make tiktoken',
   opts = {
-    model = 'gpt-5-mini', -- TODO: Try gpt-5-codex once this [PR](https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/1442) is merged
+    model = 'gpt-5-mini',
     temperature = 0.1, -- Lower = focused, higher = creative
     window = {
       layout = 'float',
