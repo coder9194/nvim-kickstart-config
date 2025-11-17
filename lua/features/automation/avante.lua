@@ -25,15 +25,6 @@ return {
         },
       },
     },
-    behaviour = {
-      auto_set_keymaps = false,
-    },
-    mappings = {
-      files = {
-        add_current = false,
-        add_all_buffers = false,
-      },
-    },
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
