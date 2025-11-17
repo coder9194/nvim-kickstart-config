@@ -120,28 +120,6 @@ return {
           },
         },
       },
-      -- NOTE: https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
-      -- all `properties` are under `vtsls.settings`
-      vtsls = {
-        settings = {
-          typescript = {
-            inlayHints = {
-              parameterNames = {
-                enabled = 'all',
-              },
-            },
-            updateImportsOnFileMove = { enabled = 'always' },
-          },
-          javascript = {
-            inlayHints = {
-              parameterNames = {
-                enabled = 'all',
-              },
-            },
-            updateImportsOnFileMove = { enabled = 'always' },
-          },
-        },
-      },
       jdtls = {
         settings = {
           java = {
