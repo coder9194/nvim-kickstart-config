@@ -29,16 +29,17 @@ return {
         }
       end
     end,
+
     formatters_by_ft = {
       lua = { 'stylua' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
-      javascript = { 'prettier', stop_after_first = true },
-      javascriptreact = { 'prettier', stop_after_first = true },
-      typescript = { 'prettier', stop_after_first = true },
-      typescriptreact = { 'prettier', stop_after_first = true },
+      javascript = { 'eslint_d', 'prettier' },
+      javascriptreact = { 'eslint_d', 'prettier' },
+      typescript = { 'eslint_d', 'prettier' },
+      typescriptreact = { 'eslint_d', 'prettier' },
       json = { 'prettier', stop_after_first = true },
       jsonc = { 'prettier', stop_after_first = true },
     },

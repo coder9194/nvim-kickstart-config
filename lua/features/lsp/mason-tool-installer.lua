@@ -14,7 +14,7 @@ return {
       'json-lsp',
       'vue-language-server',
       'prettier', -- Formatter
-      'eslint-lsp',
+      'eslint_d',
       'vtsls',
       -- Lua
       'lua-language-server',
