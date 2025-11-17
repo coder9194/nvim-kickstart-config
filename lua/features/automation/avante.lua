@@ -17,7 +17,7 @@ return {
     providers = {
       copilot = {
         -- No endpoint needed
-        model = 'gpt-5',
+        model = 'gpt-5-mini',
         timeout = 30000, -- Timeout in milliseconds
         extra_request_body = {
           temperature = 0.75,
