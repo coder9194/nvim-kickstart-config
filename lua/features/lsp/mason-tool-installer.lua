@@ -13,7 +13,7 @@ return {
       'some-sass-language-server',
       'json-lsp',
       'vue-language-server',
-      'prettier', -- Formatter
+      'prettierd', -- Formatter
       'eslint_d',
       'vtsls',
       -- Lua

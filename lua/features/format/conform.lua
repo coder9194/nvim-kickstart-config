@@ -36,12 +36,12 @@ return {
       -- python = { "isort", "black" },
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
-      javascript = { 'eslint_d', 'prettier' },
-      javascriptreact = { 'eslint_d', 'prettier' },
-      typescript = { 'eslint_d', 'prettier' },
-      typescriptreact = { 'eslint_d', 'prettier' },
-      json = { 'prettier', stop_after_first = true },
-      jsonc = { 'prettier', stop_after_first = true },
+      javascript = { 'eslint_d', 'prettierd' },
+      javascriptreact = { 'eslint_d', 'prettierd' },
+      typescript = { 'eslint_d', 'prettierd' },
+      typescriptreact = { 'eslint_d', 'prettierd' },
+      json = { 'prettierd', stop_after_first = true },
+      jsonc = { 'prettierd', stop_after_first = true },
     },
   },
   -- stylua: ignore
