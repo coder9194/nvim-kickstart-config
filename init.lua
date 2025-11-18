@@ -105,6 +105,7 @@ require('lazy').setup({
   { import = 'features.colorscheme' },
   { import = 'features.telescope' },
   { import = 'features.which-key' },
+  { import = 'features.options' },
   { import = 'options' },
 }, {
   change_detection = {

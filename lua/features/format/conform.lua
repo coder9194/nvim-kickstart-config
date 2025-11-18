@@ -2,13 +2,6 @@
 -- Autoformat
 -- https://github.com/stevearc/conform.nvim
 
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*',
-  callback = function(args)
-    require('conform').format { bufnr = args.buf }
-  end,
-})
-
 return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
@@ -20,7 +13,7 @@ return {
       -- have a well standardized coding style. You can add additional
       -- languages here or re-enable it for the disabled ones.
       local disable_filetypes = { c = true, cpp = true }
-      if disable_filetypes[vim.bo[bufnr].filetype] then
+      if (not require('store.options').auto_format_enabled) or disable_filetypes[vim.bo[bufnr].filetype] then
         return nil
       else
         return {
