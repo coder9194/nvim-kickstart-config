@@ -66,6 +66,7 @@
   "todo-comments.nvim": { "branch": "main", "commit": "411503d3bedeff88484de572f2509c248e499b38" },
   "transparent.nvim": { "branch": "main", "commit": "8ac59883de84e9cd1850ea25cf087031c5ba7d54" },
   "trouble.nvim": { "branch": "main", "commit": "bd67efe408d4816e25e8491cc5ad4088e708a69a" },
+  "ts-error-translator.nvim": { "branch": "main", "commit": "17ec46d9827e39ee5fab23ad6346ac7ab0fff9e4" },
   "tsc.nvim": { "branch": "main", "commit": "8c1b4ec6a48d038a79ced8674cb15e7db6dd8ef0" },
   "twoslash-queries.nvim": { "branch": "main", "commit": "1262c20cad5abd6e89995dc4bc0eaab0e2e4e0b9" },
   "typescript-tools.nvim": { "branch": "master", "commit": "db26c05e267239581c89f5c825fdb8c3cf6da0c5" },
