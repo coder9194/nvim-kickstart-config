@@ -74,10 +74,9 @@ return {
     },
 
     completion = {
-      documentation = {
-        auto_show = true, -- typescript-tools.nvim requires this to be `true` to show the documentation
-        auto_show_delay_ms = 0,
-      },
+      -- By default, you may press `<c-space>` to show the documentation.
+      -- Optionally, set `auto_show = true` to show the documentation after a delay.
+      documentation = { auto_show = false, auto_show_delay_ms = 500 },
     },
 
     sources = {
