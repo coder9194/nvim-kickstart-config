@@ -69,4 +69,8 @@ function M.safely_delete_keymap(mode, lhs)
   end
 end
 
+function M.copy_to_clipboard(text)
+  vim.fn.setreg('+', text, 'c')
+end
+
 return M

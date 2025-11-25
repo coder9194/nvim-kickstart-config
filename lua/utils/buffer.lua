@@ -85,4 +85,10 @@ function M.open_buffer_in_new_tab()
   require('utils.nvim').set_cursor_position(position_in_line, line_number)
 end
 
+-- Reload current buffer
+function M.reload()
+  vim.cmd 'e!'
+  vim.lsp.inlay_hint.enable()
+end
+
 return M

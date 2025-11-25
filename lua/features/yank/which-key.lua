@@ -11,8 +11,8 @@ return {
   },
   -- stylua: ignore
   keys = {
-    { '<leader>yff', '<cmd>let @+ = expand("%:p")<cr>', desc = 'Copy file full path' },
-    { '<leader>yfr', '<cmd>let @+ = expand("%")<cr>', desc = 'Copy file relative path' },
-    { '<leader>yft', '<cmd>let @+ = expand("%:t")<cr>', desc = 'Copy filename' },
+    { '<leader>yff', desc = 'Copy file full path', function() local file_full_path = require('utils.file').get_full_path() require('utils.nvim').copy_to_clipboard(file_full_path) end, },
+    { '<leader>yfr', desc = 'Copy file relative path', function() local file_relative_path = require('utils.file').get_relative_path() require('utils.nvim').copy_to_clipboard(file_relative_path) end, },
+    { '<leader>yft', desc = 'Copy filename', function() local file_filename = require('utils.file').get_filename() require('utils.nvim').copy_to_clipboard(file_filename) end, },
   },
 }
