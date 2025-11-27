@@ -6,6 +6,31 @@ return {
       -- Start picker in normal mode
       on_show = function()
         vim.cmd.stopinsert()
+        require('image').enable()
+      end,
+      on_change = function(picker)
+        local function show_svg_preview()
+          local current_item = picker:current()
+
+          if current_item and current_item.file then
+            local ext = string.match(current_item.file, '%.([^%.]+)$')
+            if ext == 'svg' then
+              require('image').from_file(current_item.file):render {
+                x = 130,
+                y = 24,
+                width = 24,
+                height = 24,
+              }
+            end
+          end
+        end
+
+        require('image').clear()
+        show_svg_preview()
+      end,
+      on_close = function()
+        require('image').disable()
+        vim.defer_fn(require('utils.buffer').reload, 100)
       end,
       sources = {
         files = {
