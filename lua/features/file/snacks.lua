@@ -25,10 +25,12 @@ return {
           end
         end
 
+        require('image').enable()
         require('image').clear()
         show_svg_preview()
       end,
       on_close = function()
+        require('image').clear()
         require('image').disable()
         vim.defer_fn(require('utils.buffer').reload, 100)
       end,
