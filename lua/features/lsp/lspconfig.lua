@@ -1,7 +1,6 @@
 -- nvim-lspconfig is a "data only" repo, providing basic, default Nvim LSP client configurations for various LSP servers. View all configs or :help lspconfig-all from Nvim.
 -- Main LSP Configuration
 -- https://github.com/neovim/nvim-lspconfig
-
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
@@ -120,28 +119,7 @@ return {
           },
         },
       },
-      -- NOTE: https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
-      -- all `properties` are under `vtsls.settings`
-      vtsls = {
-        settings = {
-          typescript = {
-            inlayHints = {
-              parameterNames = {
-                enabled = 'all',
-              },
-            },
-            updateImportsOnFileMove = { enabled = 'always' },
-          },
-          javascript = {
-            inlayHints = {
-              parameterNames = {
-                enabled = 'all',
-              },
-            },
-            updateImportsOnFileMove = { enabled = 'always' },
-          },
-        },
-      },
+      vtsls = require 'features.lsp.configs.vtsls',
       jdtls = {
         settings = {
           java = {
