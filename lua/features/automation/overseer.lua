@@ -14,6 +14,8 @@ end
 
 return {
   'stevearc/overseer.nvim',
+  -- TODO: resolve breaking changes to 2.0 (https://github.com/stevearc/overseer.nvim/releases)
+  version = '1.6',
   config = function()
     -- Register custom component
     require 'overseer.component.my_component.init'
