@@ -52,7 +52,4 @@ return {
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
     },
   },
-  keys = {
-    { '<leader>p', '<cmd>Lazy<cr>', desc = 'Lazy Plugin Manager' },
-  },
 }
