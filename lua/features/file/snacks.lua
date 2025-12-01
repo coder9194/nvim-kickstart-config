@@ -43,6 +43,7 @@ return {
             '.git',
             '.next',
             'node_modules',
+            'worktrees',
           },
         },
         smart = {
