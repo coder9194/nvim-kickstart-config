@@ -5,7 +5,7 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
-  main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+  main = 'nvim-treesitter', -- Sets main module to use for opts
   init = function()
     vim.opt.foldmethod = 'expr'
     vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'

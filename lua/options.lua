@@ -1,3 +1,6 @@
+-- Enable 24-bit RGB color support (for nvim-colorizer.lua)
+vim.opt.termguicolors = true
+
 vim.api.nvim_create_autocmd('VimEnter', {
   desc = 'Load options when Vim is started',
   callback = function()
