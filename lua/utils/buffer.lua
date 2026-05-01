@@ -87,7 +87,10 @@ end
 
 -- Reload current buffer
 function M.reload()
-  vim.cmd 'e!'
+  pcall(function()
+    vim.cmd 'e!'
+  end)
+
   vim.lsp.inlay_hint.enable()
 end
 
