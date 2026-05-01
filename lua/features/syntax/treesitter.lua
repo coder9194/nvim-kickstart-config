@@ -4,6 +4,7 @@
 
 return {
   'nvim-treesitter/nvim-treesitter',
+  branch = 'main',
   build = ':TSUpdate',
   main = 'nvim-treesitter', -- Sets main module to use for opts
   init = function()
@@ -11,10 +12,20 @@ return {
     vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
     vim.opt.foldlevel = 99
     vim.opt.foldenable = true
+
+    -- `ensure_installed` is not a option anymore, ref: https://www.qu8n.com/posts/treesitter-migration-guide-for-nvim-0-12#5-replace-ensure_installed
+    local ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+    local already_installed = require('nvim-treesitter.config').get_installed()
+    local parsers_to_install = vim
+      .iter(ensure_installed)
+      :filter(function(parser)
+        return not vim.tbl_contains(already_installed, parser)
+      end)
+      :totable()
+    require('nvim-treesitter').install(parsers_to_install)
   end,
   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
   opts = {
-    ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
     -- Autoinstall languages that are not installed
     auto_install = true,
     highlight = {
