@@ -14,7 +14,26 @@ return {
     vim.opt.foldenable = true
 
     -- `ensure_installed` is not a option anymore, ref: https://www.qu8n.com/posts/treesitter-migration-guide-for-nvim-0-12#5-replace-ensure_installed
-    local ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+    local ensure_installed = {
+      -- Available parser names: https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md
+      'bash',
+      'c',
+      'diff',
+      'html',
+      'lua',
+      'luadoc',
+      'markdown',
+      'markdown_inline',
+      'yaml',
+      'query',
+      'vim',
+      'vimdoc',
+      'javascript',
+      'typescript',
+      'tsx',
+      'css',
+      'scss',
+    }
     local already_installed = require('nvim-treesitter.config').get_installed()
     local parsers_to_install = vim
       .iter(ensure_installed)
