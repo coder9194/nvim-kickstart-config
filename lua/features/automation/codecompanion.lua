@@ -1,38 +1,71 @@
 return {
   'olimorris/codecompanion.nvim',
-  enabled = false,
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
+    'lalitmee/codecompanion-spinners.nvim',
+    'mrjones2014/codecompanion-ui.nvim',
   },
   opts = {
-    -- NOTE: The log_level is in `opts.opts`
     opts = {
       log_level = 'ERROR', -- use 'TRACE' if need extra debugging (e.g. requests, response, AI models)
+    },
+    adapters = {
+      http = {
+        -- Workaround for the `top_p` error, ref: https://github.com/olimorris/codecompanion.nvim/issues/2884#issuecomment-4207100934
+        copilot = function()
+          return require('codecompanion.adapters').extend('copilot', {
+            -- https://codecompanion.olimorris.dev/configuration/adapters-http#changing-adapter-schema
+            schema = {
+              top_p = {
+                ---@type fun(self: CodeCompanion.HTTPAdapter): boolean | boolean
+                enabled = function(self)
+                  local model = self.schema.model.default
+                  if model:find '5.4' then
+                    return false
+                  end
+                  return true
+                end,
+              },
+            },
+          })
+        end,
+      },
     },
     strategies = {
       chat = {
         adapter = {
           name = 'copilot',
-          model = 'gpt-5-mini',
+          model = 'gpt-5.4-mini',
+        },
+        placement = 'replace',
+        diff = {
+          enabled = false, -- Turn off the side-by-side window
+        },
+      },
+      inline = {
+        adapter = {
+          name = 'copilot',
+          model = 'gpt-5.4-mini',
+        },
+        -- This forces the AI to replace the text directly in the file
+        placement = 'replace',
+        diff = {
+          enabled = false, -- Turn off the side-by-side window
         },
       },
     },
-    display = {
-      action_palette = {
-        width = 95,
-        height = 10,
-        prompt = 'Prompt ', -- Prompt used for interactive LLM calls
-        provider = 'snacks', -- Can be "default", "telescope", "fzf_lua", "mini_pick" or "snacks". If not specified, the plugin will autodetect installed providers.
+    extensions = {
+      spinner = {
+        enabled = true,
         opts = {
-          show_default_actions = true, -- Show the default actions in the action palette?
-          show_default_prompt_library = true, -- Show the default prompt library in the action palette?
-          title = 'CodeCompanion actions', -- The title of the action palette
+          style = 'snacks',
         },
       },
     },
   },
   keys = {
-    { '<leader>aa', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion actions' },
+    { '<leader>aa', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion actions', mode = { 'n', 'v' } },
+    { '<leader>at', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle AI Chat' },
   },
 }

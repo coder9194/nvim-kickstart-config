@@ -1,4 +1,4 @@
--- Code suggestion powered by GitHub Copilot
+-- Code suggestion powered by GitHub Copilot (Keep for Copilot Authentication)
 -- https://github.com/zbirenbaum/copilot.lua
 return {
   'zbirenbaum/copilot.lua',
