@@ -10,6 +10,13 @@ return {
   },
   opts = {
     event_handlers = {
+      -- Workaround for file picker window remaining focused after opening a file even if it's not visible.
+      {
+        event = 'file_opened',
+        handler = function()
+          vim.cmd 'Neotree close'
+        end,
+      },
       -- enter input popup with normal mode by default.
       {
         event = 'neo_tree_popup_input_ready',
