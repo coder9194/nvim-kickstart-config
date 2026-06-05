@@ -131,6 +131,11 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
+  -- Workaround for luarocks failure on lazy.nvim in secured environment
+  rocks = {
+    enabled = true,
+    heherocks = false,
+  },
 })
 
 require('overseer').setup()
