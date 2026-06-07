@@ -10,28 +10,6 @@ return {
     opts = {
       log_level = 'ERROR', -- use 'TRACE' if need extra debugging (e.g. requests, response, AI models)
     },
-    adapters = {
-      http = {
-        -- Workaround for the `top_p` error, ref: https://github.com/olimorris/codecompanion.nvim/issues/2884#issuecomment-4207100934
-        copilot = function()
-          return require('codecompanion.adapters').extend('copilot', {
-            -- https://codecompanion.olimorris.dev/configuration/adapters-http#changing-adapter-schema
-            schema = {
-              top_p = {
-                ---@type fun(self: CodeCompanion.HTTPAdapter): boolean | boolean
-                enabled = function(self)
-                  local model = self.schema.model.default
-                  if model:find '5.4' then
-                    return false
-                  end
-                  return true
-                end,
-              },
-            },
-          })
-        end,
-      },
-    },
     strategies = {
       chat = {
         adapter = {
