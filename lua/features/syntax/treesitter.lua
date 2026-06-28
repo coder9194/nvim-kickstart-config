@@ -8,11 +8,6 @@ return {
   build = ':TSUpdate',
   main = 'nvim-treesitter', -- Sets main module to use for opts
   init = function()
-    vim.opt.foldmethod = 'expr'
-    vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-    vim.opt.foldlevel = 99
-    vim.opt.foldenable = true
-
     -- `ensure_installed` is not a option anymore, ref: https://www.qu8n.com/posts/treesitter-migration-guide-for-nvim-0-12#5-replace-ensure_installed
     local ensure_installed = {
       -- Available parser names: https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md
