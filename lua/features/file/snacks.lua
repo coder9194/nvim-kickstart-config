@@ -29,11 +29,12 @@ return {
         require('image').clear()
         show_svg_preview()
       end,
-      on_close = function()
-        require('image').clear()
-        require('image').disable()
-        vim.defer_fn(require('utils.buffer').reload, 100)
-      end,
+      -- Disable temp
+      -- on_close = function()
+      --   require('image').clear()
+      --   require('image').disable()
+      --   vim.defer_fn(require('utils.buffer').reload, 100)
+      -- end,
       sources = {
         files = {
           ignored = true, -- Ignore files in .gitignore
