@@ -10,22 +10,40 @@ return {
     opts = {
       log_level = 'ERROR', -- use 'TRACE' if need extra debugging (e.g. requests, response, AI models)
     },
+    adapters = {
+      http = {
+        qwen9b = function()
+          return require('codecompanion.adapters').extend('ollama', {
+            schema = {
+              model = {
+                default = 'qwen3.5:4b-mlx', -- Matches your exact model tag
+              },
+              num_ctx = {
+                default = 16384, -- Adjust based on your memory comfort
+              },
+            },
+          })
+        end,
+      },
+    },
     strategies = {
       chat = {
-        adapter = {
-          name = 'copilot',
-          model = 'gpt-5.4-mini',
-        },
+        -- adapter = {
+        --   name = 'copilot',
+        --   model = 'gpt-5.4-mini',
+        -- },
+        adapter = 'qwen9b',
         placement = 'replace',
         diff = {
           enabled = false, -- Turn off the side-by-side window
         },
       },
       inline = {
-        adapter = {
-          name = 'copilot',
-          model = 'gpt-5.4-mini',
-        },
+        -- adapter = {
+        --   name = 'copilot',
+        --   model = 'gpt-5.4-mini',
+        -- },
+        adapter = 'qwen9b',
         -- This forces the AI to replace the text directly in the file
         placement = 'replace',
         diff = {
