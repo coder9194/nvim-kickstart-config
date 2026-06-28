@@ -1,3 +1,5 @@
+-- Neovim Statusbar
+
 vim.o.cmdheight = 0 -- Hide command line when not being used
 
 -- TODO: find a way to remove this workaround
