@@ -164,6 +164,7 @@ return {
         end,
       },
       jsonls = {},
+      tailwindcss = {},
     }
     ---@type MasonLspconfigSettings
     ---@diagnostic disable-next-line: missing-fields
