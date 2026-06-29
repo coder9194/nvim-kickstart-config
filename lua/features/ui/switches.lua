@@ -17,7 +17,7 @@ require('snacks').toggle
       end
     end,
   })
-  :map '<leader>oW'
+  :map '<leader>SW'
 
 -- Local (Current Window) Text Wrap Toggle
 require('snacks').toggle
@@ -30,4 +30,6 @@ require('snacks').toggle
       vim.api.nvim_set_option_value('wrap', state, { scope = 'local' })
     end,
   })
-  :map '<leader>ow'
+  :map '<leader>Sw'
+
+return {}

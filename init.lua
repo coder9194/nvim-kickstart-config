@@ -96,6 +96,7 @@ require('lazy').setup({
   { import = 'features.notification' },
   { import = 'features.plugins' },
   { import = 'features.session' },
+  { import = 'features.switches' },
   { import = 'features.syntax' },
   { import = 'features.tab' },
   { import = 'features.terminal' },
@@ -106,7 +107,6 @@ require('lazy').setup({
   { import = 'features.colorscheme' },
   { import = 'features.telescope' },
   { import = 'features.which-key' },
-  { import = 'features.options' },
   { import = 'options' },
 }, {
   change_detection = {

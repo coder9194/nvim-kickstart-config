@@ -8,16 +8,6 @@ require('snacks').toggle
       require('store.options').auto_format_enabled = state
     end,
   })
-  :map '<leader>of'
+  :map '<leader>SF'
 
-return {
-  'folke/which-key.nvim',
-  opts_extend = {
-    'spec',
-  },
-  opts = {
-    spec = {
-      { '<leader>o', group = 'options' },
-    },
-  },
-}
+return {}
