@@ -42,7 +42,12 @@ return {
       end
 
       local function get_diagnostic_label()
-        local icons = { error = ' ', warn = ' ', info = '󰋼 ', hint = ' ' }
+        local icons = {
+          error = require('constants.ui').DIAGNOSTIC_ICONS.ERROR,
+          warn = require('constants.ui').DIAGNOSTIC_ICONS.WARN,
+          info = require('constants.ui').DIAGNOSTIC_ICONS.INFO,
+          hint = require('constants.ui').DIAGNOSTIC_ICONS.HINT,
+        }
         local label = {}
 
         for severity, icon in pairs(icons) do
