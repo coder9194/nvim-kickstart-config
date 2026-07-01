@@ -105,7 +105,6 @@ require('lazy').setup({
   { import = 'features.window' },
   { import = 'features.yank' },
   { import = 'features.colorscheme' },
-  { import = 'features.telescope' },
   { import = 'features.which-key' },
   { import = 'options' },
 }, {
