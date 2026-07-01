@@ -42,9 +42,6 @@ vim.api.nvim_create_autocmd('VimEnter', {
     vim.o.ignorecase = true
     vim.o.smartcase = true
 
-    -- Keep signcolumn on by default
-    vim.o.signcolumn = 'yes'
-
     -- Decrease update time
     vim.o.updatetime = 250
 
