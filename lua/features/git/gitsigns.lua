@@ -38,6 +38,9 @@ return {
       topdelete = { text = '' },
       changedelete = { text = '▎' },
     },
+    preview_config = {
+      border = 'rounded',
+    },
   },
   -- stylua: ignore
   keys = {
