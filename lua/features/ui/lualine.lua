@@ -45,7 +45,7 @@ return {
 
     sections = {
       lualine_a = { 'mode' },
-      lualine_b = { 'branch', 'diff', 'diagnostics' },
+      lualine_b = { 'branch' },
       lualine_c = { 'filename' },
 
       -- 2. Inject the custom search component into your preferred section
