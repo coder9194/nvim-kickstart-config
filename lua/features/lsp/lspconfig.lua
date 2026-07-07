@@ -153,7 +153,7 @@ return {
     -- These servers will have to be manually set up with require("lspconfig").server_name.setup{}
   end,
   keys = {
-    { '<leader>li', mode = 'n', '<cmd>LspInfo<cr>', desc = 'Check LSP Info' },
-    { '<leader>lr', mode = 'n', '<cmd>LspRestart<cr>', desc = 'Restart LSP' },
+    { '<leader>li', mode = 'n', '<cmd>:checkhealth vim.lsp<cr>', desc = 'Check LSP Info' },
+    { '<leader>lr', mode = 'n', '<cmd>lsp restart<cr>', desc = 'Restart LSP' },
   },
 }
