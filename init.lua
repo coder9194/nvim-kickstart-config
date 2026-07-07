@@ -104,6 +104,7 @@ require('lazy').setup({
   { import = 'features.colorscheme' },
   { import = 'features.which-key' },
   { import = 'options' },
+  { import = 'plugins' },
 }, {
   change_detection = {
     notify = false, -- disables "Config change detected" message

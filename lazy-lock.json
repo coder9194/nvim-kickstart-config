@@ -36,6 +36,7 @@
   "modes.nvim": { "branch": "main", "commit": "2badf8771dbb2d1e1066fd6a5dddaad2fc836e72" },
   "neo-tree.nvim": { "branch": "main", "commit": "a3adf0a84554c9c4947991081fedc9750eac0652" },
   "neoscroll.nvim": { "branch": "master", "commit": "c8d29979cb0cb3a2437a8e0ae683fd82f340d3b8" },
+  "noice.nvim": { "branch": "main", "commit": "7bfd942445fb63089b59f97ca487d605e715f155" },
   "nui.nvim": { "branch": "main", "commit": "de740991c12411b663994b2860f1a4fd0937c130" },
   "nvim-chainsaw": { "branch": "main", "commit": "7a19a42ec97ca4ee2c280d6d2c8ae51c482953b7" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "664c0b7cea1de71f8b65dfe951b7996fc3e6ccde" },

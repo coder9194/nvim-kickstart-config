@@ -43,16 +43,31 @@ vim.api.nvim_create_autocmd('LspProgress', {
 })
 
 return {
-  'folke/snacks.nvim',
-  opts = {
-    notifier = {
-      enabled = true,
-      top_down = false, -- Show notify messages on bottom right
+  {
+    'folke/snacks.nvim',
+    opts = {
+      notifier = {
+        enabled = true,
+        top_down = false, -- Show notify messages on bottom right
+      },
+    },
+    -- stylua: ignore
+    keys = {
+      { '<leader>nd', function() require('snacks.notifier').hide() end, desc = 'Dismiss Notification', },
+      { '<leader>nh', function() require('snacks.notifier').show_history() end, desc = 'Notifications', },
     },
   },
-  -- stylua: ignore
-  keys = {
-    { '<leader>nd', function() require('snacks.notifier').hide() end, desc = 'Dismiss Notification', },
-    { '<leader>nh', function() require('snacks.notifier').show_history() end, desc = 'Notifications', },
+  {
+    'folke/noice.nvim',
+    opts_extend = {
+      'lsp.progress',
+    },
+    opts = {
+      lsp = {
+        progress = {
+          enabled = false,
+        },
+      },
+    },
   },
 }
