@@ -1,6 +1,10 @@
 -- Neovim plugin to manage the file system and other tree like structures.
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 
+local function on_move(data)
+  require('snacks.nvim').rename.on_rename_file(data.source, data.destination)
+end
+
 return {
   'nvim-neo-tree/neo-tree.nvim',
   dependencies = {
@@ -32,6 +36,14 @@ return {
           -- don't forget `opts.buffer` to specify the buffer of the popup.
           vim.keymap.set('i', '<esc>', vim.cmd.stopinsert, { noremap = true, buffer = args.bufnr })
         end,
+      },
+      {
+        event = 'file_moved',
+        handler = on_move,
+      },
+      {
+        event = 'file_renamed',
+        handler = on_move,
       },
     },
     popup_border_style = 'rounded',
