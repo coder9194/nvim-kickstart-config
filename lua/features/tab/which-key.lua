@@ -8,6 +8,7 @@ return {
     spec = {
       { '<leader>t', group = 'Tab' },
       { '<leader>td', group = 'Delete' },
+      { '<leader>tl', group = 'Layout' },
       { '<leader>tm', group = 'Move' },
       { '<leader>tn', group = 'New' },
     },
