@@ -127,6 +127,7 @@ require('lazy').setup({
       task = '📌',
       lazy = '💤 ',
     },
+    border = 'rounded',
   },
   -- Workaround for luarocks failure on lazy.nvim in secured environment
   rocks = {
