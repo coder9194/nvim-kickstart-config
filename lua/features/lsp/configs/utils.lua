@@ -5,7 +5,7 @@ M.use_codelens = function(client, bufnr)
   if is_codelens_supported then
     -- Initially load codelens
     if vim.api.nvim_buf_is_valid(bufnr) then
-      vim.lsp.codelens.refresh { bufnr = bufnr }
+      vim.lsp.codelens.enable(true, { bufnr = bufnr })
     end
 
     -- Refresh codelens on the fly
@@ -13,7 +13,7 @@ M.use_codelens = function(client, bufnr)
       desc = 'Refresh CodeLens on the fly',
       callback = function()
         if vim.api.nvim_buf_is_valid(bufnr) then
-          vim.lsp.codelens.refresh { bufnr = bufnr }
+          vim.lsp.codelens.enable(true, { bufnr = bufnr })
         end
       end,
     })
