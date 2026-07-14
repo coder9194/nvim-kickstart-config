@@ -75,14 +75,52 @@ return {
     },
 
     completion = {
-      -- By default, you may press `<c-space>` to show the documentation.
-      -- Optionally, set `auto_show = true` to show the documentation after a delay.
+      keyword = { range = 'full' },
+      accept = {
+        auto_brackets = {
+          enabled = false,
+        },
+      },
+      menu = {
+        draw = {
+          -- Show where the completion came from (LSP, Path, Buffer)
+          columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind' } },
+        },
+      },
       documentation = { auto_show = true, auto_show_delay_ms = 500 },
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'lazydev' },
+      default = {
+        'lsp',
+        'path',
+        'buffer',
+        'snippets',
+        'lazydev',
+      },
       providers = {
+        lsp = {
+          name = 'LSP',
+          module = 'blink.cmp.sources.lsp',
+          score_offset = 100, -- Prioritize smart compiler data over raw text words
+        },
+        path = {
+          name = 'Path',
+          module = 'blink.cmp.sources.path',
+          score_offset = 50,
+          opts = {
+            trailing_slash = true,
+            label_trailing_slash = true,
+            get_cwd = function(context)
+              return vim.fn.getcwd()
+            end,
+          },
+        },
+        buffer = {
+          name = 'Buffer',
+          module = 'blink.cmp.sources.buffer',
+          score_offset = 0, -- Fallback to text matching if LSP doesn't know the word
+        },
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
       },
     },
