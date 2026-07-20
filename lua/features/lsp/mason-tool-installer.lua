@@ -15,7 +15,8 @@ return {
       'vue-language-server',
       'prettierd', -- Formatter
       'eslint_d',
-      'vtsls',
+      -- 'vtsls',
+      'tsgo',
       'tailwindcss',
       -- Lua
       'lua-language-server',
