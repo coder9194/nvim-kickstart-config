@@ -3,7 +3,7 @@
 
 local javascript_typescript_settings = {
   tsserver = {
-    maxTsServerMemory = 4096,
+    maxTsServerMemory = 8192,
   },
   inlayHints = {
     parameterNames = {
@@ -20,7 +20,7 @@ local javascript_typescript_settings = {
     showOnInterfaceMethods = true,
   },
   preferences = {
-    includePackageJsonAutoImports = true,
+    includePackageJsonAutoImports = 'off',
   },
 }
 
@@ -31,7 +31,7 @@ return {
   experimental = {
     completion = {
       enableServerSideFuzzyMatch = true,
-      entriesLimit = 100,
+      entriesLimit = 50,
     },
   },
   flags = {
