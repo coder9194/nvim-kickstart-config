@@ -133,7 +133,26 @@ return {
         end,
       },
       jsonls = {},
-      tailwindcss = {},
+      tailwindcss = {
+        -- Restrict root patterns so it doesn't scan parent/monorepo folders unnecessarily
+        root_dir = require('lspconfig').util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js'),
+        settings = {
+          tailwindCSS = {
+            -- Disables continuous line linting (rely on ESLint/Biome instead)
+            validate = false,
+            lint = {
+              cssConflict = 'warning',
+              invalidApply = 'error',
+              invalidScreen = 'error',
+              invalidVariant = 'error',
+              invalidConfigPath = 'error',
+            },
+            experimental = {
+              classRegex = {}, -- Leave empty unless using custom class wrappers (e.g., cva, clsx)
+            },
+          },
+        },
+      },
     }
     ---@type MasonLspconfigSettings
     ---@diagnostic disable-next-line: missing-fields

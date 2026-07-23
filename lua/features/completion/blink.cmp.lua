@@ -103,6 +103,13 @@ return {
           name = 'LSP',
           module = 'blink.cmp.sources.lsp',
           score_offset = 100, -- Prioritize smart compiler data over raw text words
+          min_keyword_length = function(ctx)
+            -- If the current active LSP client is tailwindcss, require 2 characters
+            if ctx.client and ctx.client.name == 'tailwindcss' then
+              return 2
+            end
+            return 0
+          end,
         },
         path = {
           name = 'Path',
