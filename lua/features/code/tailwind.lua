@@ -1,6 +1,25 @@
 return {
   {
     'razak17/tailwind-fold.nvim',
+    config = function()
+      local tailwind_group = vim.api.nvim_create_augroup('TailwindFoldPerf', { clear = true })
+
+      vim.api.nvim_create_autocmd('InsertEnter', {
+        group = tailwind_group,
+        callback = function()
+          vim.cmd 'TailwindFoldDisable'
+        end,
+      })
+
+      vim.api.nvim_create_autocmd('InsertLeave', {
+        group = tailwind_group,
+        callback = function()
+          vim.cmd 'TailwindFoldEnable'
+        end,
+      })
+
+      require('tailwind-fold').setup()
+    end,
     opts = {},
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     ft = { 'html', 'svelte', 'astro', 'vue', 'typescriptreact', 'php', 'blade' },

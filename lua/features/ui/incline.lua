@@ -3,6 +3,13 @@
 
 vim.opt.winbar = ' ' -- Show empty winbar
 
+-- Remove incline's autocmd on CursorMovedI so it never runs while typing
+local incline_group = vim.api.nvim_create_augroup('incline', { clear = false })
+vim.api.nvim_clear_autocmds {
+  group = incline_group,
+  event = 'CursorMovedI',
+}
+
 return {
   'b0o/incline.nvim',
   event = 'VeryLazy',
