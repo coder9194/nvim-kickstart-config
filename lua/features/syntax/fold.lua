@@ -1,16 +1,23 @@
-vim.opt.foldlevel = 99
-vim.opt.foldenable = true
+vim.opt.foldenable = true -- Enable folding
 
--- 2. Dynamically bind modern Treesitter folding to active buffers
-vim.api.nvim_create_autocmd({ 'BufReadPost', 'FileReadPost' }, {
-  pattern = '*',
-  callback = function()
-    -- Set core local options to utilize native Lua treesitter expression routing
+-- Everything stays open and visible by default.
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('TreesitterFolding', { clear = true }),
+  callback = function(args)
+    local bufnr = args.buf
+    local line_count = vim.api.nvim_buf_line_count(bufnr)
+
+    -- Bypass Treesitter folding on huge files to prevent normal mode lag
+    if line_count > 5000 then
+      return
+    end
+
+    -- Set window-local folding options safely
     vim.wo.foldmethod = 'expr'
     vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-
-    -- Force the buffer to recalculate fold boundaries instantly on read
-    vim.cmd 'normal! zx'
   end,
 })
 

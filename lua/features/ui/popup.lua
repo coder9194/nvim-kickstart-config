@@ -36,6 +36,13 @@ return {
         hover = {
           enabled = false,
         },
+        signature = {
+          enabled = false,
+          auto_trigger = false,
+        },
+        documentation = {
+          auto_show = false, -- Stops querying doc popups on CursorMoved
+        },
       },
     },
   },

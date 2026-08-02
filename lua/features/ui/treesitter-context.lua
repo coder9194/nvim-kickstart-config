@@ -14,6 +14,7 @@ return {
       max_lines = 4, -- limit context window to at most 3 lines
       trim_scope = 'outer', -- how to trim when max_lines is reached
       separator = '─',
+      multiline_threshold = 1, -- Don't parse massive multiline header blocks
     }
   end,
 }
