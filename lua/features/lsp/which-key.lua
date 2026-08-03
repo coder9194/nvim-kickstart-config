@@ -13,6 +13,7 @@ return {
   },
   opts = {
     spec = {
+      { '<leader>gr', group = 'LSP actions' },
       { '<leader>l', group = 'LSP' },
     },
   },
