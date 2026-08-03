@@ -134,8 +134,6 @@ return {
       },
       jsonls = {},
       tailwindcss = {
-        -- Restrict root patterns so it doesn't scan parent/monorepo folders unnecessarily
-        root_dir = require('lspconfig').util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js'),
         settings = {
           tailwindCSS = {
             -- Disables continuous line linting (rely on ESLint/Biome instead)
