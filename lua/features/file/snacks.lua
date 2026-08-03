@@ -213,9 +213,9 @@ return {
   -- stylua: ignore
   keys = {
     { '<leader>fr', function() require('snacks').rename.rename_file() end, desc = 'Rename File', },
-{ '<leader>ff', mode = 'n', function() Snacks.picker.resume({ source = "smart" }) end, desc = 'Find Files (Smart Resume)', },
+    { '<leader>ff', mode = 'n', function() Snacks.picker.resume({ source = "smart", cwd = Snacks.git.get_root() or vim.uv.cwd(), }) end, desc = 'Find Files (Root)', },
     { '<leader>fF', mode = 'n', require('utils.snacks').find_files_in_path, desc = 'Find Files (Target)' },
-    { '<leader>fg', function() Snacks.picker.resume({ source = "grep" }) end, desc = 'Grep Files', },
+    { '<leader>fg', function() Snacks.picker.resume({ source = "grep" }) end, desc = 'Grep Files (Root)', },
     { '<leader>fG', function() require('utils.snacks').grep_in_path() end, desc = 'Grep Files (Target)', },
     { '<leader>fl', function() Snacks.picker.resume({ source = "lines" }) vim.wait(50) vim.cmd.stopinsert() end, desc = 'Find file lines', },
     { '<leader>fv', function() Snacks.picker.grep_word() end, desc = 'Visual selection or word', mode = { 'n', 'x' },

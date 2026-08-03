@@ -1,17 +1,42 @@
 local M = {}
 
+local last_directories = {
+  smart = nil,
+  grep = nil,
+}
+
+function get_relative_directory()
+  local root = Snacks.git.get_root() or vim.uv.cwd()
+  local current_directory = vim.fn.expand '%:p:h'
+  local relative_directory = vim.fs.relpath(root, current_directory) or '.'
+
+  return relative_directory
+end
+
 -- Find files in target directory
 function M.find_files_in_path()
-  local target_directory = vim.fn.input 'Search in directory: '
+  local relative_directory = get_relative_directory()
 
-  require('snacks').picker.files { cwd = target_directory }
+  Snacks.input({
+    prompt = 'Search in directory: ',
+    default = last_directories.smart or relative_directory .. '/',
+  }, function(target_directory)
+    last_directories.smart = target_directory
+    Snacks.picker.smart { cwd = target_directory }
+  end)
 end
 
 -- Find files bu grep in target directory
 function M.grep_in_path()
-  local target_directory = vim.fn.input 'Search in directory: '
+  local relative_directory = get_relative_directory()
 
-  require('snacks').picker.grep { cwd = target_directory }
+  Snacks.input({
+    prompt = 'Search in directory: ',
+    default = last_directories.grep or relative_directory .. '/',
+  }, function(target_directory)
+    last_directories.grep = target_directory
+    Snacks.picker.grep { cwd = target_directory }
+  end)
 end
 
 -- Custom LSP definitions goto function to avoid reusing window

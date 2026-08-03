@@ -9,6 +9,13 @@ return {
       opts = {
         input = {
           enabled = true,
+          win = {
+            on_buf = function()
+              vim.schedule(function()
+                vim.cmd 'stopinsert'
+              end)
+            end,
+          },
         },
       },
     },
