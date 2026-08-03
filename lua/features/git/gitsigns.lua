@@ -19,6 +19,24 @@ local show_blame_line_popup_and_focus = function()
   require('gitsigns.actions').blame_line { full = true }
 end
 
+-- Tempoarily detach gitsigns to prevent it from choking on concurrent file changes
+local git_performance_group = vim.api.nvim_create_augroup('GitPerformance', {
+  clear = true,
+})
+vim.api.nvim_create_autocmd('FileChangedShellPost', {
+  group = git_performance_group,
+  callback = function()
+    pcall(function()
+      require('gitsigns').detach_all()
+    end)
+    vim.defer_fn(function()
+      pcall(function()
+        require('gitsigns').attach_all()
+      end)
+    end, 1000)
+  end,
+})
+
 return {
   'lewis6991/gitsigns.nvim',
   event = 'VeryLazy',
