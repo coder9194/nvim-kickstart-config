@@ -1,28 +1,29 @@
 return {
   {
     'razak17/tailwind-fold.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    ft = { 'html', 'svelte', 'astro', 'vue', 'typescriptreact', 'php', 'blade' },
     config = function()
-      local tailwind_group = vim.api.nvim_create_augroup('TailwindFoldPerf', { clear = true })
+      require('tailwind-fold').setup()
 
+      -- Force clear tailwind-fold's internal augroup to wipe duplicate BufEnter listeners
+      vim.api.nvim_create_augroup('conceal_class_name', { clear = true })
+
+      -- Handle show/hide of tailwind-fold customly to improve performance
+      local tailwind_group = vim.api.nvim_create_augroup('TailwindFoldPerf', { clear = true })
       vim.api.nvim_create_autocmd('InsertEnter', {
         group = tailwind_group,
         callback = function()
           vim.cmd 'TailwindFoldDisable'
         end,
       })
-
       vim.api.nvim_create_autocmd('InsertLeave', {
         group = tailwind_group,
         callback = function()
           vim.cmd 'TailwindFoldEnable'
         end,
       })
-
-      require('tailwind-fold').setup()
     end,
-    opts = {},
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    ft = { 'html', 'svelte', 'astro', 'vue', 'typescriptreact', 'php', 'blade' },
   },
   {
     'ruicsh/tailwindcss-dial.nvim',
