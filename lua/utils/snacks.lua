@@ -1,41 +1,144 @@
 local M = {}
 
-local last_directories = {
-  smart = nil,
-  grep = nil,
-}
+local find_root_query = ''
+local find_target_query = ''
+local grep_root_query = ''
+local grep_target_query = ''
 
-function get_relative_directory()
+local last_target_dir = ''
+local history = {}
+
+-- Helper to find directories relative to project root
+local function get_project_dirs(lead)
   local root = Snacks.git.get_root() or vim.uv.cwd()
-  local current_directory = vim.fn.expand '%:p:h'
-  local relative_directory = vim.fs.relpath(root, current_directory) or '.'
+  local search_pattern = root .. '/' .. (lead or '') .. '*'
+  local raw_matches = vim.fn.glob(search_pattern, false, true)
 
-  return relative_directory
+  local results = {}
+  for _, full_path in ipairs(raw_matches) do
+    if vim.fn.isdirectory(full_path) == 1 then
+      local rel_path = vim.fs.relpath(root, full_path)
+      if rel_path and rel_path ~= '' and rel_path ~= '.' then
+        table.insert(results, rel_path .. '/')
+      end
+    end
+  end
+  return results
+end
+
+-- Shared input prompt for target directory selection
+local function prompt_target_dir(on_select)
+  local root = Snacks.git.get_root() or vim.uv.cwd()
+  local hist_idx = #history + 1
+
+  Snacks.input({
+    prompt = 'Search in directory (empty to current directory): ',
+    default = last_target_dir,
+    win = {
+      on_buf = function(win)
+        local buf = win and win.buf or vim.api.nvim_get_current_buf()
+
+        -- Enable blink.cmp on this buffer with only the project_dirs provider
+        vim.b[buf].blink_cmp_enabled = true
+        vim.b[buf].blink_cmp_sources = { 'project_dirs' }
+
+        -- History Navigation in Normal Mode ('k' = older, 'j' = newer)
+        vim.keymap.set('n', 'k', function()
+          if #history == 0 then
+            return
+          end
+          hist_idx = math.max(1, hist_idx - 1)
+          vim.api.nvim_buf_set_lines(buf, 0, -1, false, { history[hist_idx] })
+        end, { buffer = buf, nowait = true })
+
+        vim.keymap.set('n', 'j', function()
+          if #history == 0 then
+            return
+          end
+          if hist_idx < #history then
+            hist_idx = hist_idx + 1
+            vim.api.nvim_buf_set_lines(buf, 0, -1, false, { history[hist_idx] })
+          else
+            hist_idx = #history + 1
+            vim.api.nvim_buf_set_lines(buf, 0, -1, false, { '' })
+          end
+        end, { buffer = buf, nowait = true })
+
+        vim.schedule(function()
+          vim.cmd 'stopinsert'
+        end)
+      end,
+    },
+  }, function(target_directory)
+    if not target_directory then
+      return
+    end
+
+    if target_directory ~= '' and history[#history] ~= target_directory then
+      table.insert(history, target_directory)
+    end
+
+    last_target_dir = target_directory
+
+    local effective_dir
+    if target_directory == '' or target_directory == '.' then
+      effective_dir = vim.fn.expand '%:p:h'
+    else
+      effective_dir = vim.fs.normalize(root .. '/' .. target_directory)
+    end
+
+    on_select(effective_dir)
+  end)
+end
+-- Find files in root directory
+function M.find_files_in_root()
+  local root = Snacks.git.get_root() or vim.uv.cwd()
+
+  Snacks.picker.smart {
+    cwd = root,
+    pattern = find_root_query,
+    on_close = function(picker)
+      find_root_query = picker:filter().search
+    end,
+  }
 end
 
 -- Find files in target directory
 function M.find_files_in_path()
-  local relative_directory = get_relative_directory()
-
-  Snacks.input({
-    prompt = 'Search in directory: ',
-    default = last_directories.smart or relative_directory .. '/',
-  }, function(target_directory)
-    last_directories.smart = target_directory
-    Snacks.picker.smart { cwd = target_directory }
+  prompt_target_dir(function(effective_dir)
+    Snacks.picker.smart {
+      cwd = effective_dir,
+      pattern = find_target_query,
+      on_close = function(picker)
+        find_target_query = picker:filter().search
+      end,
+    }
   end)
+end
+
+-- Find files bu grep in root directory
+function M.grep_in_root()
+  local root = Snacks.git.get_root() or vim.uv.cwd()
+
+  Snacks.picker.grep {
+    cwd = root,
+    search = grep_root_query,
+    on_close = function(picker)
+      grep_root_query = picker:filter().search
+    end,
+  }
 end
 
 -- Find files bu grep in target directory
 function M.grep_in_path()
-  local relative_directory = get_relative_directory()
-
-  Snacks.input({
-    prompt = 'Search in directory: ',
-    default = last_directories.grep or relative_directory .. '/',
-  }, function(target_directory)
-    last_directories.grep = target_directory
-    Snacks.picker.grep { cwd = target_directory }
+  prompt_target_dir(function(effective_dir)
+    Snacks.picker.grep {
+      cwd = effective_dir,
+      search = grep_target_query,
+      on_close = function(picker)
+        grep_target_query = picker:filter().search
+      end,
+    }
   end)
 end
 
