@@ -23,6 +23,20 @@ return {
           vim.cmd 'TailwindFoldEnable'
         end,
       })
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'OptionSet' }, {
+        desc = 'Toggle tailwind className fold when entering to / exiting from a diffview',
+        pattern = '*',
+        callback = function(ev)
+          if ev.event == 'OptionSet' and ev.match ~= 'diff' then
+            return
+          end
+          if vim.wo.diff then
+            vim.cmd 'TailwindFoldDisable'
+          else
+            vim.cmd 'TailwindFoldEnable'
+          end
+        end,
+      })
     end,
   },
   {
