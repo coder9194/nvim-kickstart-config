@@ -1,5 +1,6 @@
 -- NOTE: https://github.com/sublimelsp/LSP-tsgo/blob/main/LSP-tsgo.sublime-settings
 return {
+  cmd = { 'tsc', '--lsp', '--stdio' }, -- Explicitly invoke global tsc, skipping project node_modules
   on_attach = function(client, bufnr)
     if client.supports_method 'textDocument/codeLens' then
       vim.lsp.codelens.refresh { bufnr = bufnr }

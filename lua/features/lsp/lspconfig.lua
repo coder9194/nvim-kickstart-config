@@ -88,7 +88,7 @@ return {
         },
       },
       -- vtsls = require 'features.lsp.configs.vtsls',
-      tsgo = require 'features.lsp.configs.tsgo',
+      tsc = require 'features.lsp.configs.tsc',
       jdtls = {
         settings = {
           java = {

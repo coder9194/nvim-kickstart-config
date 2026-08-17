@@ -16,7 +16,7 @@ return {
       'prettierd', -- Formatter
       'eslint_d',
       -- 'vtsls',
-      'tsgo',
+      'tsc',
       'tailwindcss',
       -- Lua
       'lua-language-server',
