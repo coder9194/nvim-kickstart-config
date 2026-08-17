@@ -47,7 +47,14 @@ return {
         'StatusLineNC',
         'EndOfBuffer',
       },
-      extra_groups = {}, -- table: additional groups that should be cleared
+      extra_groups = { -- table: additional groups that should be cleared
+        'BlinkCmpMenu',
+        'BlinkCmpMenuBorder',
+        'BlinkCmpDoc',
+        'BlinkCmpDocBorder',
+        'BlinkCmpSignatureHelp',
+        'BlinkCmpSignatureHelpBorder',
+      },
       exclude_groups = {}, -- table: groups you don't want to clear
     }
 
