@@ -1,9 +1,16 @@
 local M = {}
 
 local find_root_query = ''
+local find_root_cursor = nil
+
 local find_target_query = ''
+local find_target_cursor = nil
+
 local grep_root_query = ''
+local grep_root_cursor = nil
+
 local grep_target_query = ''
+local grep_target_cursor = nil
 
 local last_target_dir = ''
 local history = {}
@@ -90,15 +97,29 @@ local function prompt_target_dir(on_select)
     on_select(effective_dir)
   end)
 end
+
 -- Find files in root directory
 function M.find_files_in_root()
   local root = Snacks.git.get_root() or vim.uv.cwd()
+  local is_cursor_restored = false
 
   Snacks.picker.smart {
     cwd = root,
     pattern = find_root_query,
+    on_change = function(picker)
+      if not is_cursor_restored and find_root_cursor and picker.list and #picker.list.items > 0 then
+        is_cursor_restored = true
+        vim.schedule(function()
+          picker.list:view(find_root_cursor)
+        end)
+      end
+    end,
     on_close = function(picker)
       find_root_query = (picker.input and picker.input.filter and picker.input.filter.pattern) or (picker.filter and picker.filter.pattern) or ''
+
+      if picker.list and picker.list.cursor then
+        find_root_cursor = picker.list.cursor
+      end
     end,
   }
 end
@@ -106,37 +127,78 @@ end
 -- Find files in target directory
 function M.find_files_in_path()
   prompt_target_dir(function(effective_dir)
+    local is_cursor_restored = false
+
     Snacks.picker.smart {
       cwd = effective_dir,
       pattern = find_target_query,
+      on_change = function(picker)
+        if not is_cursor_restored and find_target_cursor and picker.list and #picker.list.items > 0 then
+          is_cursor_restored = true
+          vim.schedule(function()
+            picker.list:view(find_target_cursor)
+          end)
+        end
+      end,
       on_close = function(picker)
         find_target_query = (picker.input and picker.input.filter and picker.input.filter.pattern) or (picker.filter and picker.filter.pattern) or ''
+
+        if picker.list and picker.list.cursor then
+          find_target_cursor = picker.list.cursor
+        end
       end,
     }
   end)
 end
 
--- Find files bu grep in root directory
+-- Find files by grep in root directory
 function M.grep_in_root()
   local root = Snacks.git.get_root() or vim.uv.cwd()
+  local is_cursor_restored = false
 
   Snacks.picker.grep {
     cwd = root,
     search = grep_root_query,
+    on_change = function(picker)
+      if not is_cursor_restored and grep_root_cursor and picker.list and #picker.list.items > 0 then
+        is_cursor_restored = true
+        vim.schedule(function()
+          picker.list:view(grep_root_cursor)
+        end)
+      end
+    end,
     on_close = function(picker)
       grep_root_query = picker:filter().search
+
+      if picker.list and picker.list.cursor then
+        grep_root_cursor = picker.list.cursor
+      end
     end,
   }
 end
 
--- Find files bu grep in target directory
+-- Find files by grep in target directory
 function M.grep_in_path()
   prompt_target_dir(function(effective_dir)
+    local is_cursor_restored = false
+
     Snacks.picker.grep {
       cwd = effective_dir,
       search = grep_target_query,
+      on_change = function(picker)
+        if not is_cursor_restored and grep_target_cursor and picker.list and #picker.list.items > 0 then
+          is_cursor_restored = true
+          vim.schedule(function()
+            picker.list:view(grep_target_cursor)
+          end)
+        end
+      end,
       on_close = function(picker)
         grep_target_query = picker:filter().search
+
+        if picker.list and picker.list.cursor then
+          grep_target_cursor = picker.list.cursor
+        end
       end,
     }
   end)
