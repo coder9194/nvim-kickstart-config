@@ -98,7 +98,7 @@ function M.find_files_in_root()
     cwd = root,
     pattern = find_root_query,
     on_close = function(picker)
-      find_root_query = picker:filter().search
+      find_root_query = (picker.input and picker.input.filter and picker.input.filter.pattern) or (picker.filter and picker.filter.pattern) or ''
     end,
   }
 end
@@ -110,7 +110,7 @@ function M.find_files_in_path()
       cwd = effective_dir,
       pattern = find_target_query,
       on_close = function(picker)
-        find_target_query = picker:filter().search
+        find_target_query = (picker.input and picker.input.filter and picker.input.filter.pattern) or (picker.filter and picker.filter.pattern) or ''
       end,
     }
   end)
