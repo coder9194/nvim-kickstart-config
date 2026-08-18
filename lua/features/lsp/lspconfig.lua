@@ -16,42 +16,8 @@ return {
     'saghen/blink.cmp',
   },
   event = 'VimEnter',
-  config = function()
-    -- Brief aside: **What is LSP?**
-    --
-    -- LSP is an initialism you've probably heard, but might not understand what it is.
-    --
-    -- LSP stands for Language Server Protocol. It's a protocol that helps editors
-    -- and language tooling communicate in a standardized fashion.
-    --
-    -- In general, you have a "server" which is some tool built to understand a particular
-    -- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
-    -- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
-    -- processes that communicate with some "client" - in this case, Neovim!
-    --
-    -- LSP provides Neovim with features like:
-    --  - Go to definition
-    --  - Find references
-    --  - Autocompletion
-    --  - Symbol Search
-    --  - and more!
-    --
-    -- Thus, Language Servers are external tools that must be installed separately from
-    -- Neovim. This is where `mason` and related plugins come into play.
-    --
-    -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
-    -- and elegantly composed help section, `:help lsp-vs-treesitter`
-
-    -- Enable the following language servers
-    --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-    --
-    --  Add any additional override configuration in the following tables. Available keys are:
-    --  - cmd (table): Override the default command used to start the server
-    --  - filetypes (table): Override the default list of associated filetypes for the server
-    --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-    --  - settings (table): Override the default settings passed when initializing the server.
-    --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-    local servers = {
+  opts = {
+    servers = {
       -- clangd = {},
       -- gopls = {},
       -- pyright = {},
@@ -88,7 +54,6 @@ return {
         },
       },
       -- vtsls = require 'features.lsp.configs.vtsls',
-      tsc = require 'features.lsp.configs.tsc',
       jdtls = {
         settings = {
           java = {
@@ -151,7 +116,11 @@ return {
           },
         },
       },
-    }
+    },
+  },
+  config = function(_, opts)
+    local servers = opts.servers or {}
+
     ---@type MasonLspconfigSettings
     ---@diagnostic disable-next-line: missing-fields
     require('mason-lspconfig').setup {
