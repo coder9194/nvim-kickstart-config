@@ -60,8 +60,9 @@ local config = {
       },
     },
   },
+  -- FIX:
   -- Enable extended LSP capabilities
-  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  -- capabilities = require('cmp_nvim_lsp').default_capabilities(),
 }
 
 -- 5. Attach JDTLS
