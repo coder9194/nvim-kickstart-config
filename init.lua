@@ -105,6 +105,7 @@ require('lazy').setup({
   { import = 'features.yank' },
   { import = 'features.colorscheme' },
   { import = 'features.which-key' },
+  { import = 'languages' },
   { import = 'options' },
   { import = 'plugins' },
 }, {
