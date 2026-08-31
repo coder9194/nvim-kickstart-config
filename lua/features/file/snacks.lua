@@ -174,8 +174,8 @@ return {
                 end
 
                 local current_buf = vim.api.nvim_get_current_buf()
-                local buftype = vim.api.nvim_buf_get_option(current_buf, 'buftype')
-                local filetype = vim.api.nvim_buf_get_option(current_buf, 'filetype')
+                local buftype = vim.bo[current_buf].buftype
+                local filetype = vim.bo[current_buf].filetype
 
                 -- If our cursor landed inside a nested picker window, protect the parent float
                 if buftype == 'nofile' or filetype:find 'snacks_picker' then
@@ -189,6 +189,45 @@ return {
             })
           end
         end,
+        open_in_trouble = function(picker)
+          -- Retrieve all filtered/available items in the picker
+          local items = picker:items()
+          local qf_items = {}
+
+          -- Format all items into quickfix entries
+          for _, item in ipairs(items) do
+            local file = item.file or item.filename
+            if file then
+              local pos = item.pos or { 1, 0 }
+              table.insert(qf_items, {
+                filename = file,
+                lnum = pos[1] or 1,
+                col = (pos[2] or 0) + 1,
+                text = item.text or item.comment or item.label or '',
+              })
+            end
+          end
+
+          -- Close the active picker
+          picker:close()
+
+          -- Populate quickfix list and launch Trouble with all items
+          if #qf_items > 0 then
+            vim.fn.setqflist({}, 'r', {
+              title = 'Snacks Picker Results',
+              items = qf_items,
+            })
+
+            local ok, trouble = pcall(require, 'trouble')
+            if ok then
+              trouble.open { mode = 'qflist' }
+            else
+              vim.cmd 'copen'
+            end
+          else
+            vim.notify('No items found in picker to send to Trouble.', vim.log.levels.WARN)
+          end
+        end,
       },
       win = {
         input = {
@@ -198,6 +237,7 @@ return {
             ['<c-k>'] = { 'open_in_above', mode = { 'i', 'n' } },
             ['<c-l>'] = { 'edit_vsplit', mode = { 'i', 'n' } },
             ['<C-f>'] = { 'open_in_floating_win', mode = { 'n', 'i' } },
+            ['<c-q>'] = { 'open_in_trouble', mode = { 'n', 'i' } },
             ['<CR>'] = { 'confirm_without_reuse', mode = { 'n', 'i' } },
           },
         },
