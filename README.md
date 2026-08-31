@@ -23,7 +23,7 @@ Yank – Manage clipboard history, yanks, and registers.
 ### Install Dependencies
 - Install [Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 - Install [imagemagick](https://imagemagick.org/)
-  - In MacOS, you can install it using `brew install imagemagick`
+- Install [lazygit](https://github.com/jesseduffield/lazygit)
 - Install [Nerd Font](https://www.nerdfonts.com) (optional)
 
 ### Install Neovim
