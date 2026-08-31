@@ -10,6 +10,10 @@ return {
     -- delay between pressing a key and opening which-key (milliseconds)
     -- this setting is independent of vim.o.timeoutlen
     delay = 0,
+    triggers = {
+      { '<auto>', mode = 'nixsoc' },
+      { 'q', mode = 'n' }, -- Force instant trigger hook for 'q' in normal mode
+    },
     icons = {
       -- set icon mappings to true if you have a Nerd Font
       mappings = vim.g.have_nerd_font,
@@ -47,9 +51,11 @@ return {
       },
     },
 
-    -- Document existing key chains
     spec = {
-      { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+      { 'q', group = 'q' },
+      { 'q:', 'q:', desc = 'Command-line History Window' },
+      { 'q/', 'q/', desc = 'Search Forward History Window' },
+      { 'q?', 'q?', desc = 'Search Backward History Window' },
     },
   },
 }
