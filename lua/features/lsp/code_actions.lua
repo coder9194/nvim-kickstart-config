@@ -24,6 +24,7 @@ return {
                 table.insert(actions, require 'features.lsp.code_actions.inline_variable'(node, bufnr))
                 table.insert(actions, require 'features.lsp.code_actions.extract_variable'(bufnr))
                 table.insert(actions, require 'features.lsp.code_actions.extract_function'(bufnr))
+                table.insert(actions, require 'features.lsp.code_actions.extract_function_to_file'(bufnr))
                 table.insert(actions, require 'features.lsp.code_actions.inline_function'(node, bufnr))
 
                 return actions
