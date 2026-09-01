@@ -64,6 +64,7 @@
   "sonokai": { "branch": "master", "commit": "b023c5280b16fe2366f5e779d8d2756b3e5ee9c3" },
   "store.nvim": { "branch": "main", "commit": "c52e4fff19f3c59589328ffd352d7502fa8b580d" },
   "supermaven-nvim": { "branch": "main", "commit": "07d20fce48a5629686aefb0a7cd4b25e33947d50" },
+  "symbol-usage.nvim": { "branch": "main", "commit": "6a449e6b37be61a110606e9a67a7a308774f120f" },
   "tailwind-fold.nvim": { "branch": "main", "commit": "e2ba5ee1ca9b74208709fe9d7314b8aa753b26a7" },
   "tailwind-hover.nvim": { "branch": "main", "commit": "431e45bb19adcb9846ef93e22c39306c5ee2fc6e" },
   "tailwindcss-dial.nvim": { "branch": "main", "commit": "dd8fe2e24e118e8a4dbdcaf36d4c7b98faa09abb" },

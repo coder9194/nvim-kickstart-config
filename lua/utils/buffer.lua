@@ -94,4 +94,12 @@ function M.reload()
   vim.lsp.inlay_hint.enable()
 end
 
+function M.reload_target(bufnr)
+  if vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_buf_is_loaded(bufnr) then
+    vim.api.nvim_buf_call(bufnr, function()
+      vim.cmd 'e!'
+    end)
+  end
+end
+
 return M

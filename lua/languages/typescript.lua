@@ -6,19 +6,6 @@ return {
       servers = {
         tsc = {
           cmd = { 'tsc', '--lsp', '--stdio' }, -- Explicitly invoke global tsc, skipping project node_modules
-          on_attach = function(client, bufnr)
-            if client.supports_method 'textDocument/codeLens' then
-              vim.lsp.codelens.refresh { bufnr = bufnr }
-
-              -- Refresh CodeLens when leaving insert mode or holding cursor
-              vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertLeave', 'CursorHold' }, {
-                buffer = bufnr,
-                callback = function()
-                  vim.lsp.codelens.refresh { bufnr = bufnr }
-                end,
-              })
-            end
-          end,
           settings = {
             typescript = {
               inlayHints = {

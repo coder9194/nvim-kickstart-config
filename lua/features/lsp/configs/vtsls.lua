@@ -25,9 +25,6 @@ local javascript_typescript_settings = {
 }
 
 return {
-  on_attach = function(client, bufnr)
-    require('features.lsp.configs.utils').use_codelens(client, bufnr)
-  end,
   experimental = {
     completion = {
       enableServerSideFuzzyMatch = true,
