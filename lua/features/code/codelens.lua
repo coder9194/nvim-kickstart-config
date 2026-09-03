@@ -19,12 +19,12 @@ return {
       }
 
       vim.defer_fn(function()
-        require('utils.symbol-usage').refresh_all_symbol_usage()
+        require('utils.symbol-usage').refresh_active_symbol_usage()
       end, 100)
 
       vim.api.nvim_create_autocmd({ 'TextChanged', 'InsertLeave' }, {
         callback = function(args)
-          require('utils.symbol-usage').refresh_all_symbol_usage()
+          require('utils.symbol-usage').refresh_active_symbol_usage()
         end,
       })
     end,
