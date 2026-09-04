@@ -6,6 +6,9 @@ return {
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {
+      view_options = {
+        show_hidden = true,
+      },
       float = {
         padding = 5, -- Increases distance from screen edges
         max_width = 80, -- Limits maximum columns
