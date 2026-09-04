@@ -6,6 +6,7 @@ return {
       servers = {
         tsc = {
           cmd = { 'tsc', '--lsp', '--stdio' }, -- Explicitly invoke global tsc, skipping project node_modules
+          filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
           settings = {
             typescript = {
               inlayHints = {
