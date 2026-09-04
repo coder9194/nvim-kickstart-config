@@ -53,6 +53,7 @@ return {
 
     spec = {
       { 'q', group = 'q' },
+      { 'qq', ':q<cr>', desc = 'Quit' },
       { 'q:', 'q:', desc = 'Command-line History Window' },
       { 'q/', 'q/', desc = 'Search Forward History Window' },
       { 'q?', 'q?', desc = 'Search Backward History Window' },
