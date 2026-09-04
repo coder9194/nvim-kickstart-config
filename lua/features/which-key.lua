@@ -2,6 +2,14 @@
 -- Useful plugin to show you pending keybinds.
 -- https://github.com/folke/which-key.nvim
 
+vim.api.nvim_create_autocmd({ 'BufEnter', 'FileType' }, {
+  group = vim.api.nvim_create_augroup('DisablePluginQMap', { clear = true }),
+  callback = function(ev)
+    -- Delete buffer-local 'q' mapping if set by a plugin
+    pcall(vim.keymap.del, 'n', 'q', { buffer = ev.buf })
+  end,
+})
+
 return {
   'folke/which-key.nvim',
   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
@@ -53,6 +61,7 @@ return {
 
     spec = {
       { 'q', group = 'q' },
+      { 'qq', ':q<cr>', desc = 'Quit' },
       { 'q:', 'q:', desc = 'Command-line History Window' },
       { 'q/', 'q/', desc = 'Search Forward History Window' },
       { 'q?', 'q?', desc = 'Search Backward History Window' },

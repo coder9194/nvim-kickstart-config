@@ -48,6 +48,5 @@ end
 function M.open_floating_window()
   vim.cmd 'OverseerQuickAction open float'
   vim.wait(require('constants.nvim').WAITING_TIME)
-  vim.api.nvim_buf_set_keymap(0, 'n', 'q', '<c-w>c', { noremap = true })
 end
 return M
