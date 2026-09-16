@@ -17,6 +17,40 @@ return {
       -- Register custom component
       require 'overseer.component.my_component.init'
 
+      -- Add hooks to run templates in headless nvim to prevent main thread being slow
+      require('overseer').add_template_hook({}, function(task_defn, util)
+        local raw_cmd = task_defn.cmd
+        if not raw_cmd then
+          return
+        end
+
+        local lua_expr = ''
+
+        if type(raw_cmd) == 'string' then
+          if raw_cmd:match '^lua%s+' then
+            lua_expr = raw_cmd
+          else
+            lua_expr = string.format('lua os.execute(%s)', vim.inspect(raw_cmd))
+          end
+        elseif type(raw_cmd) == 'table' then
+          if type(raw_cmd[1]) == 'string' and raw_cmd[1]:match '^lua%s+' then
+            lua_expr = raw_cmd[1]
+          else
+            local cmd_str = table.concat(raw_cmd, ' ')
+            lua_expr = string.format('lua os.execute(%s)', vim.inspect(cmd_str))
+          end
+        end
+
+        task_defn.cmd = {
+          'nvim',
+          '--headless',
+          '-c',
+          lua_expr,
+          '-c',
+          'qall!',
+        }
+      end)
+
       require('overseer').setup {
         task_list = {
           bindings = {
