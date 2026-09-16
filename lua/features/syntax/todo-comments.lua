@@ -16,10 +16,10 @@ return {
   -- stylua: ignore
   keys = {
     ---@diagnostic disable-next-line: undefined-field
-    { '<leader>sd', function() require('snacks').picker.todo_comments { keywords = { 'DEV' } } end, desc = 'Dev', },
+    { '<leader>dd', function() require('snacks').picker.todo_comments { keywords = { 'DEV' } } end, desc = 'Dev', },
     ---@diagnostic disable-next-line: undefined-field
-    { '<leader>st', function() require('snacks').picker.todo_comments { keywords = { 'TODO' } } end, desc = 'Todo', },
+    { '<leader>dt', function() require('snacks').picker.todo_comments { keywords = { 'TODO' } } end, desc = 'Todo', },
     ---@diagnostic disable-next-line: undefined-field
-    { '<leader>sf', function() require('snacks').picker.todo_comments { keywords = { 'FIX' } } end, desc = 'Fixme', },
+    { '<leader>df', function() require('snacks').picker.todo_comments { keywords = { 'FIX' } } end, desc = 'Fixme', },
   },
 }
