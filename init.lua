@@ -94,6 +94,7 @@ require('lazy').setup({
   { import = 'features.lsp' },
   { import = 'features.notification' },
   { import = 'features.plugins' },
+  { import = 'features.search' },
   { import = 'features.session' },
   { import = 'features.switches' },
   { import = 'features.syntax' },
