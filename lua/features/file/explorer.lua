@@ -21,7 +21,6 @@ return {
         ['h'] = require('utils.oil').go_back_within_root,
         ['l'] = 'actions.select',
         ['<cr>'] = 'actions.select',
-        ['<esc>'] = 'actions.close',
         ['<c-h>'] = function()
           require('oil').select { vertical = true, split = 'topleft' }
         end,

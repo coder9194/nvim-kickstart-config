@@ -240,6 +240,7 @@ return {
               ['<C-f>'] = { 'open_in_floating_win', mode = { 'n', 'i' } },
               ['<c-q>'] = { 'open_in_trouble', mode = { 'n', 'i' } },
               ['<CR>'] = { 'confirm_without_reuse', mode = { 'n', 'i' } },
+              ['<esc>'] = false,
             },
           },
         },
