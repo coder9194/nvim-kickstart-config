@@ -30,7 +30,7 @@ end
 
 function M.get_workspace_templates(workspace_name)
   local nvim_config_path = require('utils.nvim').get_config_path()
-  local overseer_template_path = nvim_config_path .. '/lua/overseer/template'
+  local overseer_template_path = nvim_config_path .. '/lua/overseer/template/workspaces'
 
   local templates = {}
 
