@@ -19,11 +19,24 @@ return {
       }
 
       vim.defer_fn(function()
-        require('utils.symbol-usage').refresh_active_symbol_usage()
+        local win = vim.api.nvim_get_current_win()
+        local is_normal_window = vim.api.nvim_win_get_config(win).relative == ''
+
+        if is_normal_window then
+          require('utils.symbol-usage').refresh_active_symbol_usage()
+        end
       end, 100)
 
       vim.api.nvim_create_autocmd({ 'TextChanged', 'InsertLeave' }, {
         callback = function(args)
+          local win = vim.api.nvim_get_current_win()
+          local is_floating_window = vim.api.nvim_win_get_config(win).relative ~= ''
+          local is_non_normal_buffer = vim.bo[args.buf].buftype ~= ''
+
+          if is_floating_window or is_non_normal_buffer then
+            return
+          end
+
           require('utils.symbol-usage').refresh_active_symbol_usage()
         end,
       })
