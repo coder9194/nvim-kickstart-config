@@ -13,6 +13,7 @@
   "flash.nvim": { "branch": "main", "commit": "b6346946d10d07998efee029fb0f7a593806d0cd" },
   "full_visual_line.nvim": { "branch": "master", "commit": "4b54267be7aeea9013a5c0795377eaa3f3a1c322" },
   "gitsigns.nvim": { "branch": "main", "commit": "5be654f2232c10ddcad19c1607a67b6b4b78fc29" },
+  "grug-far.nvim": { "branch": "main", "commit": "11595bf747edc270bce2069d1020502ad4ae56cf" },
   "guess-indent.nvim": { "branch": "main", "commit": "84a4987ff36798c2fc1169cbaff67960aed9776f" },
   "hbac.nvim": { "branch": "main", "commit": "600896c302fb9232559b93200ed2caab8bd8e28e" },
   "image.nvim": { "branch": "master", "commit": "88351f1f7d9dbae286e671ce3690a49660dd8a5c" },
