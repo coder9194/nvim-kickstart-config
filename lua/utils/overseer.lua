@@ -52,7 +52,6 @@ end
 
 -- Load pre-defined templates for current workspace
 function M.load_current_workspace_templates()
-  local base_templates = { 'builtin' }
   local current_workspace_name = require('utils.nvim').get_current_workspace_name()
   local has_current_workspace_template = require('utils.overseer').check_has_workspace_template(current_workspace_name)
   local current_workspace_templates = has_current_workspace_template and require('utils.overseer').get_workspace_templates(current_workspace_name) or {}
