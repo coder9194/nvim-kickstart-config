@@ -4,7 +4,7 @@ local M = {}
 ---@param workspace_name string
 function M.check_has_workspace_template(workspace_name)
   local config_path = require('utils.nvim').get_config_path()
-  local is_folder_readable = vim.fn.isdirectory(config_path .. '/lua/overseer/template/' .. workspace_name)
+  local is_folder_readable = vim.fn.isdirectory(config_path .. '/lua/overseer/template/workspaces/' .. workspace_name)
   local has_workspace_template = is_folder_readable == 1
 
   return has_workspace_template
@@ -57,7 +57,8 @@ function M.load_current_workspace_templates()
   local current_workspace_templates = has_current_workspace_template and require('utils.overseer').get_workspace_templates(current_workspace_name) or {}
 
   for _, workspace_template in ipairs(current_workspace_templates) do
-    require('overseer').load_template(workspace_template)
+    local full_workspace_template = 'workspaces/' .. workspace_template
+    require('overseer').load_template(full_workspace_template)
   end
 end
 
