@@ -16,21 +16,35 @@ return {
           return
         end
 
-        local lua_expr = ''
+        -- Combine task_defn.cmd and task_defn.args into a single list
+        local full_cmd_list = {}
 
         if type(raw_cmd) == 'string' then
-          if raw_cmd:match '^lua%s+' then
-            lua_expr = raw_cmd
-          else
-            lua_expr = string.format('lua os.execute(%s)', vim.inspect(raw_cmd))
-          end
+          table.insert(full_cmd_list, raw_cmd)
         elseif type(raw_cmd) == 'table' then
-          if type(raw_cmd[1]) == 'string' and raw_cmd[1]:match '^lua%s+' then
-            lua_expr = raw_cmd[1]
-          else
-            local cmd_str = table.concat(raw_cmd, ' ')
-            lua_expr = string.format('lua os.execute(%s)', vim.inspect(cmd_str))
+          for _, v in ipairs(raw_cmd) do
+            table.insert(full_cmd_list, v)
           end
+        end
+
+        if task_defn.args and type(task_defn.args) == 'table' then
+          for _, v in ipairs(task_defn.args) do
+            table.insert(full_cmd_list, v)
+          end
+        end
+
+        -- Clear task_defn.args so Overseer does not append orphaned arguments to nvim
+        task_defn.args = nil
+
+        local first_arg = full_cmd_list[1] or ''
+        local lua_expr = ''
+
+        if first_arg:match '^lua%s+' then
+          lua_expr = first_arg
+        else
+          local full_cmd_str = table.concat(full_cmd_list, ' ')
+          local escaped_cmd = full_cmd_str:gsub('\\', '\\\\'):gsub('"', '\\"')
+          lua_expr = string.format('lua os.execute("%s")', escaped_cmd)
         end
 
         task_defn.cmd = {
