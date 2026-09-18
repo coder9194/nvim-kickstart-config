@@ -5,14 +5,6 @@ return {
     'stevearc/overseer.nvim',
     -- TODO: resolve breaking changes to 2.0 (https://github.com/stevearc/overseer.nvim/releases)
     version = '1.6',
-    opts = {
-      task_list = {
-        bindings = {
-          ['<C-f>'] = require('utils.overseer').open_floating_window,
-        },
-      },
-      templates = require('utils.lua').concatenate_tables(base_templates, current_workspace_templates),
-    },
     config = function()
       -- Register custom component
       require 'overseer.component.my_component.init'
