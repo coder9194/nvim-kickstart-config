@@ -57,16 +57,19 @@ return {
         }
       end)
 
+      require('utils.overseer').load_custom_templates()
+      require('utils.overseer').load_current_workspace_templates()
+
       require('overseer').setup {
         task_list = {
           bindings = {
-            ['<C-f>'] = require('utils.overseer').open_floating_window,
+            ['<c-h>'] = '<c-w>h',
+            ['<c-l>'] = '<c-w>l',
+            ['<c-j>'] = '<c-w>j',
+            ['<c-k>'] = '<c-w>k',
           },
         },
       }
-
-      require('utils.overseer').load_custom_templates()
-      require('utils.overseer').load_current_workspace_templates()
     end,
     keys = {
       { '<leader>ar', '<cmd>OverseerRunCmd<cr>', desc = 'Run raw command' },
