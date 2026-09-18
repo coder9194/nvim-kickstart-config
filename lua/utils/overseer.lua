@@ -61,4 +61,35 @@ function M.load_current_workspace_templates()
   end
 end
 
+--- Dynamically scan and load all custom overseer templates from a directory module path
+---@param dir_path string Module subpath inside lua directory (e.g., "automation/templates" or "overseer/template")
+function M.load_custom_templates()
+  local dir_path = 'overseer/template/universal'
+
+  -- Resolve physical file paths under Neovim's runtime path
+  local search_pattern = string.format('lua/%s/*.lua', dir_path)
+  local template_files = vim.api.nvim_get_runtime_file(search_pattern, true)
+
+  for _, file_path in ipairs(template_files) do
+    -- Extract file name without directory prefix or .lua extension
+    local module_name = file_path:match '([^/]+)%.lua$'
+
+    if module_name and not module_name:find '^_' then
+      local full_module = string.format('%s.%s', dir_path:gsub('/', '.'), module_name)
+
+      -- Clear package cache to ensure fresh reloads during dev
+      package.loaded[full_module] = nil
+      local template_mod = require(full_module)
+
+      if type(template_mod) == 'table' then
+        if type(template_mod.register) == 'function' then
+          template_mod.register()
+        else
+          require('overseer').register_template(template_mod)
+        end
+      end
+    end
+  end
+end
+
 return M

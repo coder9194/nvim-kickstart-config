@@ -51,6 +51,7 @@ return {
         },
       }
 
+      require('utils.overseer').load_custom_templates()
       require('utils.overseer').load_current_workspace_templates()
     end,
     keys = {
