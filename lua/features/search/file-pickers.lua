@@ -4,32 +4,33 @@ return {
     ---@type snacks.Config
     opts = {
       picker = {
+        -- TODO: Make image works on another macbook
         -- Start picker in normal mode
-        on_show = function()
-          vim.cmd.stopinsert()
-          require('image').enable()
-        end,
-        on_change = function(picker)
-          local function show_svg_preview()
-            local current_item = picker:current()
-
-            if current_item and current_item.file then
-              local ext = string.match(current_item.file, '%.([^%.]+)$')
-              if ext == 'svg' then
-                require('image').from_file(current_item.file):render {
-                  x = 130,
-                  y = 24,
-                  width = 24,
-                  height = 24,
-                }
-              end
-            end
-          end
-
-          require('image').enable()
-          require('image').clear()
-          show_svg_preview()
-        end,
+        -- on_show = function()
+        --   vim.cmd.stopinsert()
+        --   require('image').enable()
+        -- end,
+        -- on_change = function(picker)
+        --   local function show_svg_preview()
+        --     local current_item = picker:current()
+        --
+        --     if current_item and current_item.file then
+        --       local ext = string.match(current_item.file, '%.([^%.]+)$')
+        --       if ext == 'svg' then
+        --         require('image').from_file(current_item.file):render {
+        --           x = 130,
+        --           y = 24,
+        --           width = 24,
+        --           height = 24,
+        --         }
+        --       end
+        --     end
+        --   end
+        --
+        --   require('image').enable()
+        --   require('image').clear()
+        --   show_svg_preview()
+        -- end,
         -- Disable temp
         -- on_close = function()
         --   require('image').clear()
