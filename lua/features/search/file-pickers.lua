@@ -52,6 +52,9 @@ return {
           smart = {
             multi = { 'files' },
           },
+          grep = {
+            regex = false,
+          },
         },
         actions = {
           open_in_left = function(picker, selected_file, actions)
