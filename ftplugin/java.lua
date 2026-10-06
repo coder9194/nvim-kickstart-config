@@ -1,3 +1,4 @@
+-- TODO: migrate this file to using `languages/android-java.lua`
 local jdtls = require 'jdtls'
 
 -- 1. Identify Project Root (detect Gradle wrapper / Android build files)
@@ -60,10 +61,7 @@ local config = {
       },
     },
   },
-  -- FIX:
-  -- Enable extended LSP capabilities
-  -- capabilities = require('cmp_nvim_lsp').default_capabilities(),
 }
 
 -- 5. Attach JDTLS
-jdtls.start_or_attach(config)
+-- jdtls.start_or_attach(config)
