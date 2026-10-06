@@ -5,6 +5,20 @@ return {
     'altermo/ultimate-autopair.nvim',
     event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {},
+    config = function(_, opts)
+      require('ultimate-autopair').setup(opts)
+
+      vim.api.nvim_create_autocmd('FileType', {
+        desc = 'Disable autopair in picker input',
+        pattern = 'snacks_picker_input',
+        callback = function(ev)
+          local pairs = { '(', '[', '{', '"', "'", '`', '<' }
+          for _, key in ipairs(pairs) do
+            vim.keymap.set('i', key, key, { buffer = ev.buf, nowait = true })
+          end
+        end,
+      })
+    end,
   },
   {
     'windwp/nvim-ts-autotag',
