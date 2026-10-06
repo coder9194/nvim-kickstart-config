@@ -4,12 +4,12 @@ return {
     ---@type snacks.Config
     opts = {
       picker = {
-        -- TODO: Make image works on another macbook
         -- Start picker in normal mode
-        -- on_show = function()
-        --   vim.cmd.stopinsert()
-        --   require('image').enable()
-        -- end,
+        on_show = function()
+          vim.cmd.stopinsert()
+          -- TODO: Make image works on another macbook
+          -- require('image').enable()
+        end,
         -- on_change = function(picker)
         --   local function show_svg_preview()
         --     local current_item = picker:current()
