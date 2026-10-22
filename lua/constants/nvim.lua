@@ -10,4 +10,9 @@ M.MODE_COLORS = {
   VISUAL = '#fd7883',
 }
 
+M.LOG = {
+  LEVEL = vim.log.levels.DEBUG,
+  TARGET_FILE = '', -- Set to empty string to disable filtering
+}
+
 return M
