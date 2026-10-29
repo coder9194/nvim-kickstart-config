@@ -16,7 +16,7 @@ local show_blame_line_popup_and_focus = function()
     return win
   end
 
-  require('gitsigns.actions').blame_line { full = true }
+  require('gitsigns.actions').blame_line { full = false }
 end
 
 -- Tempoarily detach gitsigns to prevent it from choking on concurrent file changes
