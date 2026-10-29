@@ -34,6 +34,10 @@ return {
       opts = {},
     },
     'folke/lazydev.nvim',
+    {
+      'mikavilpas/blink-ripgrep.nvim',
+      version = '*', -- use the latest stable version
+    },
   },
   --- @module 'blink.cmp'
   --- @type blink.cmp.Config
@@ -95,6 +99,7 @@ return {
         'lsp',
         'path',
         'buffer',
+        'ripgrep',
         'snippets',
         'lazydev',
       },
@@ -127,6 +132,14 @@ return {
           name = 'Buffer',
           module = 'blink.cmp.sources.buffer',
           score_offset = 0, -- Fallback to text matching if LSP doesn't know the word
+        },
+        ripgrep = {
+          module = 'blink-ripgrep',
+          name = 'Ripgrep',
+          -- see the full configuration below for all available options
+          ---@module "blink-ripgrep"
+          ---@type blink-ripgrep.Options
+          opts = {},
         },
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
       },
