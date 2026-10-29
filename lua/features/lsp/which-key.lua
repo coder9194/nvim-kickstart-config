@@ -1,11 +1,3 @@
-local safely_delete = require('utils.nvim').safely_delete_keymap
-
-safely_delete({ 'n', 'v' }, 'gra')
-safely_delete('n', 'gri')
-safely_delete('n', 'grn')
-safely_delete('n', 'grr')
-safely_delete('n', 'grt')
-
 return {
   'folke/which-key.nvim',
   opts_extend = {
@@ -13,7 +5,6 @@ return {
   },
   opts = {
     spec = {
-      { '<leader>gr', group = 'LSP actions' },
       { '<leader>l', group = 'LSP' },
     },
   },
