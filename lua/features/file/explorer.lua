@@ -33,6 +33,9 @@ return {
         ['<c-k>'] = function()
           require('oil').select { horizontal = true, split = 'topleft' }
         end,
+        ['<c-t>'] = function()
+          require('oil').select { tab = true }
+        end,
       },
     },
     -- stylua: ignore
