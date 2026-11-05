@@ -38,7 +38,7 @@ function M.get_workspace_templates(workspace_name)
 
   for _, template_full_name in ipairs(template_files) do
     local template_name = require('utils.lua').split_string(template_full_name, '.')[1]
-    table.insert(templates, workspace_name .. '.' .. template_name)
+    table.insert(templates, workspace_name .. '/' .. template_name)
   end
 
   return templates
@@ -62,13 +62,62 @@ function M.load_current_workspace_templates()
   local current_workspace_templates = has_current_workspace_template and require('utils.overseer').get_workspace_templates(current_workspace_name) or {}
 
   for _, workspace_template in ipairs(current_workspace_templates) do
-    local module_path = string.format('overseer.' .. require('constants.overseer').WORKSPACE_TEMPLATE_FOLDER_NAME .. '.%s', workspace_template)
+    local template_relative_path = '/overseer/' .. require('constants.overseer').WORKSPACE_TEMPLATE_FOLDER_NAME .. '/' .. workspace_template
+    local template_absolute_path = package.searchpath(template_relative_path, require('utils.nvim').get_config_path() .. '/lua/?.lua')
 
-    package.loaded[module_path] = nil
-    local ok, template_def = pcall(require, module_path)
+    if template_absolute_path then
+      local chunk, err = loadfile(template_absolute_path)
 
-    if ok and type(template_def) == 'table' then
-      require('overseer').register_template(template_def)
+      if chunk then
+        local raw_filename = workspace_template:match('([^%.%/]+)$'):gsub('%.lua$', '')
+        local clean_name = raw_filename:gsub('[%_%-]', ' ')
+        local template_name = require('utils.lua').parse_title_case(clean_name)
+
+        require('overseer').register_template {
+          name = template_name,
+          builder = function(params)
+            local overseer = require 'overseer'
+            local captured_defn = nil
+            local original_new_task = overseer.new_task
+
+            -- Intercept overseer.new_task to capture task parameters and prevent direct execution
+            ---@diagnostic disable-next-line: duplicate-set-field
+            overseer.new_task = function(opts)
+              captured_defn = opts
+              return {
+                start = function() end,
+              }
+            end
+
+            local ok, err_msg = pcall(chunk, params)
+
+            -- Restore original overseer.new_task immediately
+            overseer.new_task = original_new_task
+
+            if not ok then
+              require('utils.log').error(string.format('Error executing template script %s: %s', template_name, err_msg))
+              return {
+                cmd = { 'true' },
+                components = {},
+              }
+            end
+
+            -- Pass captured task definition back to Overseer so add_template_hook can process it
+            if captured_defn then
+              return captured_defn
+            end
+
+            return {
+              cmd = { 'true' },
+              components = {},
+            }
+          end,
+        }
+      else
+        require('utils.log').error(string.format('Failed to load template %s: %s', workspace_template, err))
+      end
+    else
+      require('utils.log').error(string.format('Could not find template file for module %s', template_relative_path))
     end
   end
 end

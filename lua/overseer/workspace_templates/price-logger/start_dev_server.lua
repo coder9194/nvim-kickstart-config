@@ -1,11 +1,8 @@
-return {
-  name = 'Start Dev Server',
-  builder = function()
-    print 'Dev server is starting'
+print 'Dev server is starting'
 
-    return {
-      cmd = 'pnpm dev',
-      components = { 'default', 'unique' },
-    }
-  end,
-}
+require('overseer')
+  .new_task({
+    cmd = 'pnpm dev',
+    components = { 'default', 'unique' },
+  })
+  :start()
